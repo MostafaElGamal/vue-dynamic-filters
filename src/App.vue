@@ -1,37 +1,28 @@
 <template>
   <div id="app">
-    <vue-filter
-      :filters="filters"
-      :filterValues="filterValues"
-      @update="update"
-    ></vue-filter>
+    <h1>Vue Filter</h1>
+    <vue-filter :filters="filters"></vue-filter>
   </div>
 </template>
 
 <script>
-import data from "./data";
-import vueFilter from "@/components/vueFilter";
+import vueFilter from "@/vue-filter";
+import filters from "./filters";
 export default {
   name: "App",
-  data() {
-    return {
-      filters: data.filters,
-      filterValues: {},
-    };
-  },
   components: {
     vueFilter,
   },
-  methods: {
-    update(data) {
-      this.filterValues = data;
-    },
+  data() {
+    return {
+      filters: filters,
+    };
   },
 };
 </script>
+
 <style scoped>
-.vue-filter {
-  border: solid 1px black;
-  padding: 1rem 3rem;
+h1 {
+  text-align: center;
 }
 </style>
