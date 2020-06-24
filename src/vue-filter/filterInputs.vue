@@ -7,6 +7,7 @@
       :checkboxName="checkboxName"
       :checkboxOutputKey="checkboxOutputKey"
       :checkboxLabelKey="checkboxLabelKey"
+      @checkboxChanged="checkboxChanged"
     ></check-box>
   </div>
 </template>
@@ -43,6 +44,11 @@ export default {
   components: {
     checkBox,
   },
+
+  methods: {
+    checkboxChanged(value) {
+      this.$emit("checkboxChanged", value);
+    },
+  },
 };
 </script>
-<style scoped></style>

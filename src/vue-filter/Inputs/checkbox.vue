@@ -10,7 +10,7 @@
         class="vue-filter__checkbox-input"
         :id="`id_${_uid}${checkbox.id}`"
         @change="checkboxChange"
-        :value="checkbox"
+        :value="checkbox.id"
       />
       <label
         class="vue-filter__checkbox-label"
@@ -46,14 +46,9 @@ export default {
       default: "title",
     },
   },
-  data() {
-    return {
-      test: [],
-    };
-  },
   methods: {
     checkboxChange(event) {
-      console.log(event.target._value);
+      this.$emit("checkboxChanged", event.target.value);
     },
   },
 };

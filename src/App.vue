@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <h1>Vue Filter</h1>
-    <vue-filter :filters="filters"></vue-filter>
+    {{ test }}
+    <vue-filter :filters="filters" @test="testMethod"></vue-filter>
   </div>
 </template>
 
@@ -16,7 +16,13 @@ export default {
   data() {
     return {
       filters: filters,
+      test: {},
     };
+  },
+  methods: {
+    testMethod(value) {
+      this.test = value;
+    },
   },
 };
 </script>
