@@ -9,8 +9,9 @@
         type="checkbox"
         class="vue-filter__checkbox-input"
         :id="`id_${_uid}${checkbox.id}`"
-        @change="checkboxChange"
         :value="checkbox.id"
+        @change="checkboxChange"
+        :checked="filterValue[checkboxValueKey].includes(checkbox.id)"
       />
       <label
         class="vue-filter__checkbox-label"
@@ -25,7 +26,7 @@
 export default {
   name: "check-boxs",
   props: {
-    value: {
+    filterValue: {
       type: Object,
       default: () => ({}),
     },
@@ -37,7 +38,7 @@ export default {
       type: String,
       default: "checkbox",
     },
-    checkboxOutputKey: {
+    checkboxValueKey: {
       type: String,
       default: "checkbox",
     },
@@ -46,9 +47,10 @@ export default {
       default: "title",
     },
   },
+
   methods: {
     checkboxChange(event) {
-      this.$emit("checkboxChanged", event.target.value);
+      this.$emit("checkboxChangeToFilterInputs", event.target._value);
     },
   },
 };

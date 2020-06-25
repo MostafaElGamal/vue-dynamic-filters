@@ -64,7 +64,7 @@ export default [
     display_type: 1,
     options: [
       {
-        id: 2,
+        id: 7,
         title: "ابيض",
         slug: null,
         products_count: 1,

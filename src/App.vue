@@ -1,12 +1,16 @@
 <template>
   <div id="app">
-    {{ test }}
-    <vue-filter :filters="filters" @test="testMethod"></vue-filter>
+    {{ testCheckbox }}
+    <vue-filter
+      :filters="filters"
+      v-model="testCheckbox"
+      :filterValue="testCheckbox"
+    ></vue-filter>
   </div>
 </template>
 
 <script>
-import vueFilter from "@/vue-filter";
+import vueFilter from "./vue-filter";
 import filters from "./filters";
 export default {
   name: "App",
@@ -17,12 +21,10 @@ export default {
     return {
       filters: filters,
       test: {},
+      testCheckbox: {
+        checkbox: [2, 4, 6],
+      },
     };
-  },
-  methods: {
-    testMethod(value) {
-      this.test = value;
-    },
   },
 };
 </script>

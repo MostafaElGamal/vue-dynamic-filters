@@ -3,11 +3,11 @@
     <check-box
       v-if="filterType == checkboxName"
       :options="options"
-      :value="value"
+      :filterValue="filterValue"
       :checkboxName="checkboxName"
-      :checkboxOutputKey="checkboxOutputKey"
+      :checkboxValueKey="checkboxValueKey"
       :checkboxLabelKey="checkboxLabelKey"
-      @checkboxChanged="checkboxChanged"
+      @checkboxChangeToFilterInputs="checkboxChangedToIndex"
     ></check-box>
   </div>
 </template>
@@ -16,7 +16,7 @@ import checkBox from "./Inputs/checkbox";
 export default {
   name: "filter-inputs",
   props: {
-    value: {
+    filterValue: {
       type: Object,
       default: () => ({}),
     },
@@ -32,7 +32,7 @@ export default {
       type: String,
       default: "checkbox",
     },
-    checkboxOutputKey: {
+    checkboxValueKey: {
       type: String,
       default: "checkbox",
     },
@@ -46,8 +46,8 @@ export default {
   },
 
   methods: {
-    checkboxChanged(value) {
-      this.$emit("checkboxChanged", value);
+    checkboxChangedToIndex(value) {
+      this.$emit("checkboxChangedToVueFilter", value);
     },
   },
 };

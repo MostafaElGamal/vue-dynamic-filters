@@ -8,47 +8,29 @@
       <p class="vue-filter__title">
         {{ filter[filterTitleKey] }}
       </p>
-      <!-- <filter-inputs
-        :value="value"
+      <filter-inputs
+        :filterValue="filterValue"
         :filterType="filter[filterTypeKey]"
         :options="filter[filterOptionsKey]"
         :checkboxName="checkboxName"
-        :checkboxOutputKey="checkboxOutputKey"
+        :checkboxValueKey="checkboxValueKey"
         :checkboxLabelKey="checkboxLabelKey"
-        @checkboxChanged="checkboxChanged"
-      ></filter-inputs> -->
-      <div
-        class="vue-filter__checkbox"
-        v-for="checkbox in filter[filterOptionsKey]"
-        :key="checkbox.id"
-      >
-        <input
-          type="checkbox"
-          class="vue-filter__checkbox-input"
-          :id="`id_${_uid}${checkbox.id}`"
-          @change="checkboxChange"
-          :value="checkbox.id"
-        />
-        <label
-          class="vue-filter__checkbox-label"
-          :for="`id_${_uid}${checkbox.id}`"
-        >
-          {{ checkbox[checkboxLabelKey] }}
-        </label>
-      </div>
+        @checkboxChangedToVueFilter="sentCheckbox"
+      ></filter-inputs>
     </div>
   </div>
 </template>
 <script>
-// import filterInputs from "./filterInputs";
+import filterInputs from "./filterInputs";
 export default {
   name: "vue-filter",
   props: {
+    // Data
     filters: {
       type: Array,
       default: () => [],
     },
-    value: {
+    filterValue: {
       type: Object,
       default: () => ({}),
     },
@@ -56,10 +38,12 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    // Methods Type
     methodType: {
       type: String,
       default: "m1",
     },
+    // Filter Info
     filterTitleKey: {
       type: String,
       default: "title",
@@ -76,6 +60,7 @@ export default {
       type: String,
       default: "filter_type",
     },
+    // Checkbox Info
     checkboxName: {
       type: String,
       default: "checkbox",
@@ -84,40 +69,34 @@ export default {
       type: String,
       default: "title",
     },
-    checkboxOutputKey: {
+    checkboxValueKey: {
       type: String,
       default: "checkbox",
     },
   },
   components: {
-    // filterInputs,
+    filterInputs,
   },
   methods: {
-    checkboxChanged(selectedCheckbox) {
-      let value, checkboxOutputKey;
-      value = this.value;
-      checkboxOutputKey = this.checkboxOutputKey;
-
+    sentCheckbox(selectedCheckbox) {
+      let value, checkboxValueKey;
+      value = this.filterValue;
+      checkboxValueKey = this.checkboxValueKey;
       // Check if there is a array in checkbox key if not asssign an new array.
-      if (!value[checkboxOutputKey]) {
-        value[checkboxOutputKey] = [];
+      if (!value[checkboxValueKey]) {
+        value[checkboxValueKey] = [];
       }
       // Check if this seleceted checkbox in array or not if not remove it.
-      if (value[checkboxOutputKey].includes(selectedCheckbox)) {
-        const index = value[checkboxOutputKey].indexOf(selectedCheckbox);
-        value[checkboxOutputKey].splice(index, 1);
+      if (value[checkboxValueKey].includes(selectedCheckbox)) {
+        const index = value[checkboxValueKey].indexOf(selectedCheckbox);
+        value[checkboxValueKey].splice(index, 1);
       } else {
-        value[checkboxOutputKey].push(selectedCheckbox);
+        value[checkboxValueKey].push(selectedCheckbox);
       }
-
-      if (!value[checkboxOutputKey].length) {
-        delete value[checkboxOutputKey];
+      if (!value[checkboxValueKey].length) {
+        delete value[checkboxValueKey];
       }
-
-      this.$emit("test", this.value);
-    },
-    checkboxChange(event) {
-      this.checkboxChanged(event.target.value);
+      this.$emit("input", { ...this.filterValue });
     },
   },
 };
