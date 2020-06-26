@@ -9,7 +9,7 @@
       :checkboxLabelKey="checkboxLabelKey"
       :checkboxValue="checkboxValue"
       @checkboxChangeToFilterInputs="checkboxChangedToIndex"
-    ></check-box>
+    />
     <custom-select
       v-if="filterType == selectCheckName"
       :options="options"
@@ -17,12 +17,20 @@
       :selectValueKey="selectValueKey"
       :selectValue="selectValue"
       :selectDisplayNameKey="selectDisplayNameKey"
-    ></custom-select>
+    />
+
+    <search
+      v-if="filterType == searchCheckName"
+      :options="options"
+      :filterValue="filterValue"
+      :searchValueKey="searchValueKey"
+    />
   </div>
 </template>
 <script>
 import checkBox from "./Inputs/checkbox";
 import customSelect from "./Inputs/customSelect";
+import search from "./Inputs/search";
 export default {
   name: "filter-inputs",
   props: {
@@ -73,10 +81,20 @@ export default {
       type: String,
       default: "",
     },
+    // Search Api's
+    searchValueKey: {
+      type: String,
+      default: "search",
+    },
+    searchCheckName: {
+      type: String,
+      default: "text",
+    },
   },
   components: {
     checkBox,
     customSelect,
+    search,
   },
 
   methods: {

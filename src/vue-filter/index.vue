@@ -20,6 +20,8 @@
         :selectValue="selectValue"
         :selectValueKey="selectValueKey"
         :selectDisplayNameKey="selectDisplayNameKey"
+        :searchValueKey="searchValueKey"
+        :searchCheckName="searchCheckName"
         @checkboxChangedToVueFilter="sentCheckbox"
       ></filter-inputs>
     </div>
@@ -98,6 +100,15 @@ export default {
     selectValue: {
       type: String,
       default: "",
+    },
+    // Search Api's
+    searchValueKey: {
+      type: String,
+      default: "search",
+    },
+    searchCheckName: {
+      type: String,
+      default: "text",
     },
   },
   components: {
