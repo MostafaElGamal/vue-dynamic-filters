@@ -3,8 +3,9 @@
     {{ testCheckbox }}
     <vue-filter
       :filters="filters"
-      v-model="testCheckbox"
       :filterValue="testCheckbox"
+      checkboxValue="id"
+      v-model="testCheckbox"
     ></vue-filter>
   </div>
 </template>

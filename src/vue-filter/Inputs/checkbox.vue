@@ -6,12 +6,24 @@
       :key="checkbox.id"
     >
       <input
+        v-if="checkboxValue"
         type="checkbox"
         class="vue-filter__checkbox-input"
         :id="`id_${_uid}${checkbox.id}`"
-        :value="checkbox.id"
+        :value="checkbox[checkboxValue]"
         @change="checkboxChange"
-        :checked="filterValue[checkboxValueKey].includes(checkbox.id)"
+        :checked="
+          filterValue[checkboxValueKey].includes(checkbox[checkboxValue])
+        "
+      />
+      <input
+        v-else
+        type="checkbox"
+        class="vue-filter__checkbox-input"
+        :id="`id_${_uid}${checkbox.id}`"
+        :value="checkbox"
+        @change="checkboxChange"
+        :checked="filterValue[checkboxValueKey].includes(checkbox)"
       />
       <label
         class="vue-filter__checkbox-label"
@@ -38,13 +50,17 @@ export default {
       type: String,
       default: "checkbox",
     },
+    checkboxLabelKey: {
+      type: String,
+      default: "title",
+    },
     checkboxValueKey: {
       type: String,
       default: "checkbox",
     },
-    checkboxLabelKey: {
+    checkboxValue: {
       type: String,
-      default: "title",
+      default: "",
     },
   },
 

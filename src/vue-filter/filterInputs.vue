@@ -7,6 +7,7 @@
       :checkboxName="checkboxName"
       :checkboxValueKey="checkboxValueKey"
       :checkboxLabelKey="checkboxLabelKey"
+      :checkboxValue="checkboxValue"
       @checkboxChangeToFilterInputs="checkboxChangedToIndex"
     ></check-box>
   </div>
@@ -32,13 +33,17 @@ export default {
       type: String,
       default: "checkbox",
     },
+    checkboxLabelKey: {
+      type: String,
+      default: "title",
+    },
     checkboxValueKey: {
       type: String,
       default: "checkbox",
     },
-    checkboxLabelKey: {
+    checkboxValue: {
       type: String,
-      default: "title",
+      default: "",
     },
   },
   components: {

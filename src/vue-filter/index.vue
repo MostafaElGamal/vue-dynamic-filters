@@ -15,6 +15,7 @@
         :checkboxName="checkboxName"
         :checkboxValueKey="checkboxValueKey"
         :checkboxLabelKey="checkboxLabelKey"
+        :checkboxValue="checkboxValue"
         @checkboxChangedToVueFilter="sentCheckbox"
       ></filter-inputs>
     </div>
@@ -25,25 +26,25 @@ import filterInputs from "./filterInputs";
 export default {
   name: "vue-filter",
   props: {
-    // Data
+    // Data Api's
     filters: {
       type: Array,
       default: () => [],
-    },
-    filterValue: {
-      type: Object,
-      default: () => ({}),
     },
     filter: {
       type: Object,
       default: () => ({}),
     },
-    // Methods Type
+    filterValue: {
+      type: Object,
+      default: () => ({}),
+    },
+    // Methods Api's
     methodType: {
       type: String,
       default: "m1",
     },
-    // Filter Info
+    // Filter Api's
     filterTitleKey: {
       type: String,
       default: "title",
@@ -57,10 +58,10 @@ export default {
       default: "options",
     },
     displayTypeKey: {
-      type: String,
-      default: "filter_type",
+      type: Boolean,
+      default: true,
     },
-    // Checkbox Info
+    // Checkbox Api's
     checkboxName: {
       type: String,
       default: "checkbox",
@@ -72,6 +73,10 @@ export default {
     checkboxValueKey: {
       type: String,
       default: "checkbox",
+    },
+    checkboxValue: {
+      type: String,
+      default: "",
     },
   },
   components: {
