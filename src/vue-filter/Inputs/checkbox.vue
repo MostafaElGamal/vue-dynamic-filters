@@ -13,7 +13,9 @@
         :value="checkbox[checkboxValue]"
         @change="checkboxChange"
         :checked="
-          filterValue[checkboxValueKey].includes(checkbox[checkboxValue])
+          filterValue[checkboxValueKey]
+            ? filterValue[checkboxValueKey].includes(checkbox[checkboxValue])
+            : false
         "
       />
       <input
@@ -23,7 +25,11 @@
         :id="`id_${_uid}${checkbox.id}`"
         :value="checkbox"
         @change="checkboxChange"
-        :checked="filterValue[checkboxValueKey].includes(checkbox)"
+        :checked="
+          filterValue[checkboxValueKey]
+            ? filterValue[checkboxValueKey].includes(checkbox)
+            : false
+        "
       />
       <label
         class="vue-filter__checkbox-label"
@@ -45,10 +51,6 @@ export default {
     options: {
       type: Array,
       default: () => [],
-    },
-    checkboxName: {
-      type: String,
-      default: "checkbox",
     },
     checkboxLabelKey: {
       type: String,

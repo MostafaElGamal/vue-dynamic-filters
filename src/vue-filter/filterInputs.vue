@@ -1,22 +1,32 @@
 <template>
   <div class="vue-filter__input-holder">
     <check-box
-      v-if="filterType == checkboxName"
+      v-if="filterType == checkboxCheckName"
       :options="options"
       :filterValue="filterValue"
-      :checkboxName="checkboxName"
+      :checkboxCheckName="checkboxCheckName"
       :checkboxValueKey="checkboxValueKey"
       :checkboxLabelKey="checkboxLabelKey"
       :checkboxValue="checkboxValue"
       @checkboxChangeToFilterInputs="checkboxChangedToIndex"
     ></check-box>
+    <custom-select
+      v-if="filterType == selectCheckName"
+      :options="options"
+      :filterValue="filterValue"
+      :selectValueKey="selectValueKey"
+      :selectValue="selectValue"
+      :selectDisplayNameKey="selectDisplayNameKey"
+    ></custom-select>
   </div>
 </template>
 <script>
 import checkBox from "./Inputs/checkbox";
+import customSelect from "./Inputs/customSelect";
 export default {
   name: "filter-inputs",
   props: {
+    // Data Api's
     filterValue: {
       type: Object,
       default: () => ({}),
@@ -29,7 +39,8 @@ export default {
       type: Array,
       default: () => [],
     },
-    checkboxName: {
+    // Checkbox Api's
+    checkboxCheckName: {
       type: String,
       default: "checkbox",
     },
@@ -45,9 +56,27 @@ export default {
       type: String,
       default: "",
     },
+    // Selecte Api's
+    selectCheckName: {
+      type: String,
+      default: "select",
+    },
+    selectValueKey: {
+      type: String,
+      default: "select",
+    },
+    selectDisplayNameKey: {
+      type: String,
+      default: "title",
+    },
+    selectValue: {
+      type: String,
+      default: "",
+    },
   },
   components: {
     checkBox,
+    customSelect,
   },
 
   methods: {

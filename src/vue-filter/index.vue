@@ -12,10 +12,14 @@
         :filterValue="filterValue"
         :filterType="filter[filterTypeKey]"
         :options="filter[filterOptionsKey]"
-        :checkboxName="checkboxName"
-        :checkboxValueKey="checkboxValueKey"
-        :checkboxLabelKey="checkboxLabelKey"
         :checkboxValue="checkboxValue"
+        :checkboxValueKey="checkboxValueKey"
+        :checkboxCheckName="checkboxCheckName"
+        :checkboxLabelKey="checkboxLabelKey"
+        :selectCheckName="selectCheckName"
+        :selectValue="selectValue"
+        :selectValueKey="selectValueKey"
+        :selectDisplayNameKey="selectDisplayNameKey"
         @checkboxChangedToVueFilter="sentCheckbox"
       ></filter-inputs>
     </div>
@@ -62,7 +66,7 @@ export default {
       default: true,
     },
     // Checkbox Api's
-    checkboxName: {
+    checkboxCheckName: {
       type: String,
       default: "checkbox",
     },
@@ -75,6 +79,23 @@ export default {
       default: "checkbox",
     },
     checkboxValue: {
+      type: String,
+      default: "",
+    },
+    // Select Api's
+    selectCheckName: {
+      type: String,
+      default: "select",
+    },
+    selectValueKey: {
+      type: String,
+      default: "select",
+    },
+    selectDisplayNameKey: {
+      type: String,
+      default: "title",
+    },
+    selectValue: {
       type: String,
       default: "",
     },

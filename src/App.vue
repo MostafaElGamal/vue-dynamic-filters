@@ -4,6 +4,7 @@
     <vue-filter
       :filters="filters"
       :filterValue="testCheckbox"
+      selectValue="id"
       checkboxValue="id"
       v-model="testCheckbox"
     ></vue-filter>
@@ -22,9 +23,7 @@ export default {
     return {
       filters: filters,
       test: {},
-      testCheckbox: {
-        checkbox: [2, 4, 6],
-      },
+      testCheckbox: {},
     };
   },
 };
