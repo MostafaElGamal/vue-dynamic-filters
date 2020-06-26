@@ -50,14 +50,14 @@ export default [
       },
     ],
   },
-  // {
-  //   title: "Price",
-  //   filter_type: "price",
-  //   display_type: 1,
-  //   min: "0.000000",
-  //   max: "9000.000000",
-  //   options: [],
-  // },
+  {
+    title: "Price",
+    filter_type: "price",
+    display_type: 1,
+    min: "0.000000",
+    max: "9000.000000",
+    options: [],
+  },
   {
     title: "Search",
     filter_type: "text",

@@ -23,7 +23,17 @@ export default {
     return {
       filters: filters,
       test: {},
-      testCheckbox: {},
+      testCheckbox: {
+        min: 1,
+        max: 21,
+      },
+      // testCheckbox: {
+      //   min: 1,
+      //   max: 21,
+      //   search: "asdasd",
+      //   checkbox: [2, 4],
+      //   select: 2,
+      // },
     };
   },
 };

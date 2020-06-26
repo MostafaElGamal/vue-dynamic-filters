@@ -18,12 +18,20 @@
       :selectValue="selectValue"
       :selectDisplayNameKey="selectDisplayNameKey"
     />
-
     <search
       v-if="filterType == searchCheckName"
       :options="options"
       :filterValue="filterValue"
       :searchValueKey="searchValueKey"
+    />
+
+    <price
+      v-if="filterType == priceCheckName"
+      :filterValue="filterValue"
+      :minLabel="minLabel"
+      :maxLabel="maxLabel"
+      :minPriceValueKey="minPriceValueKey"
+      :maxPriceValueKey="maxPriceValueKey"
     />
   </div>
 </template>
@@ -31,6 +39,7 @@
 import checkBox from "./Inputs/checkbox";
 import customSelect from "./Inputs/customSelect";
 import search from "./Inputs/search";
+import price from "./Inputs/price";
 export default {
   name: "filter-inputs",
   props: {
@@ -82,19 +91,42 @@ export default {
       default: "",
     },
     // Search Api's
+    searchCheckName: {
+      type: String,
+      default: "text",
+    },
     searchValueKey: {
       type: String,
       default: "search",
     },
-    searchCheckName: {
+
+    // Price Api's
+    priceCheckName: {
       type: String,
-      default: "text",
+      default: "price",
+    },
+    minLabel: {
+      type: String,
+      default: "min",
+    },
+    maxLabel: {
+      type: String,
+      default: "max",
+    },
+    minPriceValueKey: {
+      type: String,
+      default: "min",
+    },
+    maxPriceValueKey: {
+      type: String,
+      default: "max",
     },
   },
   components: {
     checkBox,
     customSelect,
     search,
+    price,
   },
 
   methods: {

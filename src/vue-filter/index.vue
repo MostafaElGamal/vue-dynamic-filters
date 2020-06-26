@@ -22,6 +22,10 @@
         :selectDisplayNameKey="selectDisplayNameKey"
         :searchValueKey="searchValueKey"
         :searchCheckName="searchCheckName"
+        :priceCheckName="priceCheckName"
+        :minLabel="minLabel"
+        :maxLabel="maxLabel"
+        :maxPriceValueKey="maxPriceValueKey"
         @checkboxChangedToVueFilter="sentCheckbox"
       ></filter-inputs>
     </div>
@@ -109,6 +113,28 @@ export default {
     searchCheckName: {
       type: String,
       default: "text",
+    },
+
+    // Price Api's
+    priceCheckName: {
+      type: String,
+      default: "price",
+    },
+    minLabel: {
+      type: String,
+      default: "min",
+    },
+    maxLabel: {
+      type: String,
+      default: "max",
+    },
+    minPriceValueKey: {
+      type: String,
+      default: "min",
+    },
+    maxPriceValueKey: {
+      type: String,
+      default: "max",
     },
   },
   components: {
