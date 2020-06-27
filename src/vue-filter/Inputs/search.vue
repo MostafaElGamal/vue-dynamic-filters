@@ -1,6 +1,6 @@
 <template>
   <div class="vue-filter__search-holder">
-    <input type="text" v-model="filterValue[searchValueKey]" />
+    <input type="text" @keyup="search" :value="filterValue[searchValueKey]" />
   </div>
 </template>
 <script>
@@ -18,6 +18,11 @@ export default {
     searchValueKey: {
       type: String,
       default: "search",
+    },
+  },
+  methods: {
+    search(event) {
+      this.$emit("searchChangeToFilterInputs", event.target.value);
     },
   },
 };

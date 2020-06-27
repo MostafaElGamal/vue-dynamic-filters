@@ -1,14 +1,15 @@
 <template>
   <div class="vue-filter__price-holder">
-    <form>
+    <form v-on:submit.prevent="sentMinMax">
       <div class="vue-filter__min-holder">
         <label :for="`min_${_uid}`">
           {{ minLabel }}
         </label>
         <input
           type="number"
+          name="min"
           :id="`min_${_uid}`"
-          v-model="filterValue[minPriceValueKey]"
+          :value="filterValue[minPriceValueKey]"
         />
       </div>
       <div class="vue-filter__max-holder">
@@ -17,10 +18,14 @@
         </label>
         <input
           type="number"
+          name="max"
           :id="`max_${_uid}`"
-          v-model="filterValue[maxPriceValueKey]"
+          :value="filterValue[maxPriceValueKey]"
         />
       </div>
+      <button type="submit">
+        sent Price
+      </button>
     </form>
   </div>
 </template>
@@ -47,6 +52,13 @@ export default {
     maxPriceValueKey: {
       type: String,
       default: "max",
+    },
+  },
+  methods: {
+    sentMinMax(event) {
+      const min = event.target.min.value;
+      const max = event.target.max.value;
+      this.$emit("priceChangeToFilterInputs", { min, max });
     },
   },
 };

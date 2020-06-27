@@ -9,7 +9,7 @@
         {{ filter[filterTitleKey] }}
       </p>
       <filter-inputs
-        :filterValue="filterValue"
+        :filterValue="value"
         :filterType="filter[filterTypeKey]"
         :options="filter[filterOptionsKey]"
         :checkboxValue="checkboxValue"
@@ -27,6 +27,8 @@
         :maxLabel="maxLabel"
         :maxPriceValueKey="maxPriceValueKey"
         @checkboxChangedToVueFilter="sentCheckbox"
+        @searchChangedToVueFilter="sentSearch"
+        @priceChangedToVueFilter="sentPrice"
       ></filter-inputs>
     </div>
   </div>
@@ -45,15 +47,17 @@ export default {
       type: Object,
       default: () => ({}),
     },
-    filterValue: {
+    value: {
       type: Object,
-      default: () => ({}),
+      required: true,
     },
+
     // Methods Api's
     methodType: {
       type: String,
       default: "m1",
     },
+
     // Filter Api's
     filterTitleKey: {
       type: String,
@@ -71,6 +75,7 @@ export default {
       type: Boolean,
       default: true,
     },
+
     // Checkbox Api's
     checkboxCheckName: {
       type: String,
@@ -88,6 +93,7 @@ export default {
       type: String,
       default: "",
     },
+
     // Select Api's
     selectCheckName: {
       type: String,
@@ -105,6 +111,7 @@ export default {
       type: String,
       default: "",
     },
+
     // Search Api's
     searchValueKey: {
       type: String,
@@ -141,10 +148,46 @@ export default {
     filterInputs,
   },
   methods: {
+    sentInput() {
+      this.$emit("input", { ...this.value });
+    },
+    filterValueAndKey(valueKey) {
+      return [this.value, valueKey];
+    },
+    deleteEmptyFilter(filterCondition, valueKey) {
+      let [value] = this.filterValueAndKey();
+
+      if (!filterCondition) {
+        delete value[valueKey];
+      }
+    },
+    checkIfEmptyAndSent(condition, valueKey) {
+      this.deleteEmptyFilter(condition, valueKey);
+      this.sentInput();
+    },
+    sentSearch(test) {
+      let [value, searchValueKey] = this.filterValueAndKey(this.searchValueKey);
+      value[searchValueKey] = test;
+      this.checkIfEmptyAndSent(value[searchValueKey], searchValueKey);
+    },
+    sentPrice({ min, max }) {
+      this.value[this.minPriceValueKey] = min;
+      this.value[this.maxPriceValueKey] = max;
+
+      this.checkIfEmptyAndSent(
+        this.value[this.minPriceValueKey],
+        this.minPriceValueKey,
+      );
+      this.checkIfEmptyAndSent(
+        this.value[this.maxPriceValueKey],
+        this.maxPriceValueKey,
+      );
+    },
     sentCheckbox(selectedCheckbox) {
-      let value, checkboxValueKey;
-      value = this.filterValue;
-      checkboxValueKey = this.checkboxValueKey;
+      let [value, checkboxValueKey] = this.filterValueAndKey(
+        this.checkboxValueKey,
+      );
+
       // Check if there is a array in checkbox key if not asssign an new array.
       if (!value[checkboxValueKey]) {
         value[checkboxValueKey] = [];
@@ -156,10 +199,11 @@ export default {
       } else {
         value[checkboxValueKey].push(selectedCheckbox);
       }
-      if (!value[checkboxValueKey].length) {
-        delete value[checkboxValueKey];
-      }
-      this.$emit("input", { ...this.filterValue });
+
+      this.checkIfEmptyAndSent(
+        value[checkboxValueKey].length,
+        checkboxValueKey,
+      );
     },
   },
 };

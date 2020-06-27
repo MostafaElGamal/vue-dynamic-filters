@@ -23,6 +23,7 @@
       :options="options"
       :filterValue="filterValue"
       :searchValueKey="searchValueKey"
+      @searchChangeToFilterInputs="searchChangedToIndex"
     />
 
     <price
@@ -32,6 +33,7 @@
       :maxLabel="maxLabel"
       :minPriceValueKey="minPriceValueKey"
       :maxPriceValueKey="maxPriceValueKey"
+      @priceChangeToFilterInputs="priceChangedToIndex"
     />
   </div>
 </template>
@@ -132,6 +134,12 @@ export default {
   methods: {
     checkboxChangedToIndex(value) {
       this.$emit("checkboxChangedToVueFilter", value);
+    },
+    searchChangedToIndex(value) {
+      this.$emit("searchChangedToVueFilter", value);
+    },
+    priceChangedToIndex({ min, max }) {
+      this.$emit("priceChangedToVueFilter", { min, max });
     },
   },
 };

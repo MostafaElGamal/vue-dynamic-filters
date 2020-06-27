@@ -3,8 +3,6 @@
     {{ testCheckbox }}
     <vue-filter
       :filters="filters"
-      :filterValue="testCheckbox"
-      selectValue="id"
       checkboxValue="id"
       v-model="testCheckbox"
     ></vue-filter>
@@ -24,16 +22,12 @@ export default {
       filters: filters,
       test: {},
       testCheckbox: {
-        min: 1,
-        max: 21,
+        // min: 1,
+        // max: 21,
+        // search: "asdasd",
+        // checkbox: [2, 4],
+        // select: 2,
       },
-      // testCheckbox: {
-      //   min: 1,
-      //   max: 21,
-      //   search: "asdasd",
-      //   checkbox: [2, 4],
-      //   select: 2,
-      // },
     };
   },
 };
