@@ -1,11 +1,24 @@
 <template>
   <div id="app">
     {{ testCheckbox }}
+    <div class="filter" v-for="filter in filters" :key="filter.id">
+      <vue-filter
+        selectValue="id"
+        checkboxValue="id"
+        methodType="m2"
+        :filter="filter"
+        :singleFilterValue="testCheckbox"
+        @testMethod="testMethod"
+      ></vue-filter>
+    </div>
+    <!-- {{ test }}
+
     <vue-filter
       :filters="filters"
+      selectValue="id"
       checkboxValue="id"
-      v-model="testCheckbox"
-    ></vue-filter>
+      v-model="test"
+    ></vue-filter> -->
   </div>
 </template>
 
@@ -22,13 +35,18 @@ export default {
       filters: filters,
       test: {},
       testCheckbox: {
-        // min: 1,
-        // max: 21,
-        // search: "asdasd",
-        // checkbox: [2, 4],
-        // select: 2,
+        search: "wdasdasd",
+        checkbox: [4, 2],
+        min: 11,
+        max: 123,
+        select: 2,
       },
     };
+  },
+  methods: {
+    testMethod(value) {
+      this.testCheckbox = value;
+    },
   },
 };
 </script>

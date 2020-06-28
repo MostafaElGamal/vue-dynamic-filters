@@ -33,6 +33,7 @@
       :maxLabel="maxLabel"
       :minPriceValueKey="minPriceValueKey"
       :maxPriceValueKey="maxPriceValueKey"
+      :buttonName="buttonName"
       @priceChangeToFilterInputs="priceChangedToIndex"
     />
   </div>
@@ -122,6 +123,10 @@ export default {
     maxPriceValueKey: {
       type: String,
       default: "max",
+    },
+    buttonName: {
+      type: String,
+      default: "Search",
     },
   },
   components: {

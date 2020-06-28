@@ -24,7 +24,7 @@
         />
       </div>
       <button type="submit">
-        sent Price
+        {{ buttonName }}
       </button>
     </form>
   </div>
@@ -52,6 +52,10 @@ export default {
     maxPriceValueKey: {
       type: String,
       default: "max",
+    },
+    buttonName: {
+      type: String,
+      default: "Search",
     },
   },
   methods: {

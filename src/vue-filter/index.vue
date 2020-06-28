@@ -1,35 +1,68 @@
 <template>
   <div class="vue-filter">
-    <div
-      class="vue-filter__filter-holder"
-      v-for="filter in filters"
-      :key="filter.id"
-    >
-      <p class="vue-filter__title">
-        {{ filter[filterTitleKey] }}
-      </p>
-      <filter-inputs
-        :filterValue="value"
-        :filterType="filter[filterTypeKey]"
-        :options="filter[filterOptionsKey]"
-        :checkboxValue="checkboxValue"
-        :checkboxValueKey="checkboxValueKey"
-        :checkboxCheckName="checkboxCheckName"
-        :checkboxLabelKey="checkboxLabelKey"
-        :selectCheckName="selectCheckName"
-        :selectValue="selectValue"
-        :selectValueKey="selectValueKey"
-        :selectDisplayNameKey="selectDisplayNameKey"
-        :searchValueKey="searchValueKey"
-        :searchCheckName="searchCheckName"
-        :priceCheckName="priceCheckName"
-        :minLabel="minLabel"
-        :maxLabel="maxLabel"
-        :maxPriceValueKey="maxPriceValueKey"
-        @checkboxChangedToVueFilter="sentCheckbox"
-        @searchChangedToVueFilter="sentSearch"
-        @priceChangedToVueFilter="sentPrice"
-      ></filter-inputs>
+    <div class="vue-filter__method-one" v-if="methodType == 'm1'">
+      <div
+        class="vue-filter__filter-holder"
+        v-for="filter in filters"
+        :key="filter.id"
+      >
+        <p class="vue-filter__title">
+          {{ filter[filterTitleKey] }}
+        </p>
+        <filter-inputs
+          :filterValue="value"
+          :filterType="filter[filterTypeKey]"
+          :options="filter[filterOptionsKey]"
+          :checkboxValue="checkboxValue"
+          :checkboxValueKey="checkboxValueKey"
+          :checkboxCheckName="checkboxCheckName"
+          :checkboxLabelKey="checkboxLabelKey"
+          :selectCheckName="selectCheckName"
+          :selectValue="selectValue"
+          :selectValueKey="selectValueKey"
+          :selectDisplayNameKey="selectDisplayNameKey"
+          :searchValueKey="searchValueKey"
+          :searchCheckName="searchCheckName"
+          :priceCheckName="priceCheckName"
+          :minLabel="minLabel"
+          :maxLabel="maxLabel"
+          :maxPriceValueKey="maxPriceValueKey"
+          :buttonName="buttonName"
+          @checkboxChangedToVueFilter="sentCheckbox"
+          @searchChangedToVueFilter="sentSearch"
+          @priceChangedToVueFilter="sentPrice"
+        ></filter-inputs>
+      </div>
+    </div>
+    <div class="vue-filter__method-two" v-else>
+      <div class="vue-filter__filter-holder">
+        <p class="vue-filter__title">
+          {{ filter[filterTitleKey] }}
+        </p>
+        <filter-inputs
+          :filterValue="singleFilterValue"
+          :filterType="filter[filterTypeKey]"
+          :options="filter[filterOptionsKey]"
+          :checkboxValue="checkboxValue"
+          :checkboxValueKey="checkboxValueKey"
+          :checkboxCheckName="checkboxCheckName"
+          :checkboxLabelKey="checkboxLabelKey"
+          :selectCheckName="selectCheckName"
+          :selectValue="selectValue"
+          :selectValueKey="selectValueKey"
+          :selectDisplayNameKey="selectDisplayNameKey"
+          :searchValueKey="searchValueKey"
+          :searchCheckName="searchCheckName"
+          :priceCheckName="priceCheckName"
+          :minLabel="minLabel"
+          :maxLabel="maxLabel"
+          :maxPriceValueKey="maxPriceValueKey"
+          :buttonName="buttonName"
+          @checkboxChangedToVueFilter="sentCheckbox"
+          @searchChangedToVueFilter="sentSearch"
+          @priceChangedToVueFilter="sentPrice"
+        ></filter-inputs>
+      </div>
     </div>
   </div>
 </template>
@@ -49,9 +82,12 @@ export default {
     },
     value: {
       type: Object,
-      required: true,
     },
 
+    singleFilterValue: {
+      type: Object,
+      default: () => ({}),
+    },
     // Methods Api's
     methodType: {
       type: String,
@@ -143,16 +179,33 @@ export default {
       type: String,
       default: "max",
     },
+    buttonName: {
+      type: String,
+      default: "Search",
+    },
   },
   components: {
     filterInputs,
   },
+  computed: {
+    checkFirstMethod() {
+      return this.methodType == "m1";
+    },
+  },
   methods: {
     sentInput() {
-      this.$emit("input", { ...this.value });
+      if (this.checkFirstMethod) {
+        this.$emit("input", { ...this.value });
+      } else {
+        this.$emit("testMethod", { ...this.singleFilterValue });
+      }
     },
     filterValueAndKey(valueKey) {
-      return [this.value, valueKey];
+      if (this.checkFirstMethod) {
+        return [this.value, valueKey];
+      } else {
+        return [this.singleFilterValue, valueKey];
+      }
     },
     deleteEmptyFilter(filterCondition, valueKey) {
       let [value] = this.filterValueAndKey();
@@ -171,17 +224,15 @@ export default {
       this.checkIfEmptyAndSent(value[searchValueKey], searchValueKey);
     },
     sentPrice({ min, max }) {
-      this.value[this.minPriceValueKey] = min;
-      this.value[this.maxPriceValueKey] = max;
-
-      this.checkIfEmptyAndSent(
-        this.value[this.minPriceValueKey],
+      let maxPriceValueKey = this.maxPriceValueKey;
+      let [value, minPriceValueKey] = this.filterValueAndKey(
         this.minPriceValueKey,
       );
-      this.checkIfEmptyAndSent(
-        this.value[this.maxPriceValueKey],
-        this.maxPriceValueKey,
-      );
+      value[minPriceValueKey] = min;
+      value[maxPriceValueKey] = max;
+
+      this.checkIfEmptyAndSent(value[minPriceValueKey], minPriceValueKey);
+      this.checkIfEmptyAndSent(value[maxPriceValueKey], maxPriceValueKey);
     },
     sentCheckbox(selectedCheckbox) {
       let [value, checkboxValueKey] = this.filterValueAndKey(
