@@ -3,13 +3,18 @@
     <div class="vue-filter__method-one" v-if="methodType == 'm1'">
       <div
         class="vue-filter__filter-holder"
-        v-for="filter in filters"
-        :key="filter.id"
+        v-for="(filter, i) in filters"
+        :key="i"
       >
-        <p class="vue-filter__title">
+        <button
+          @click="toggleFilterMethodOne(i)"
+          class="vue-filter__filter-btn"
+        >
           {{ filter[filterTitleKey] }}
-        </p>
+        </button>
+
         <filter-inputs
+          :id="`vue_filter_method_one_${i + 1}`"
           :filterValue="value"
           :filterType="filter[filterTypeKey]"
           :options="filter[filterOptionsKey]"
@@ -36,10 +41,11 @@
     </div>
     <div class="vue-filter__method-two" v-else>
       <div class="vue-filter__filter-holder">
-        <p class="vue-filter__title">
+        <button @click="toggleFilterMethodTwo" class="vue-filter__filter-btn">
           {{ filter[filterTitleKey] }}
-        </p>
+        </button>
         <filter-inputs
+          :id="`vue_filter_method_two_${_uid}`"
           :filterValue="singleFilterValue"
           :filterType="filter[filterTypeKey]"
           :options="filter[filterOptionsKey]"
@@ -83,7 +89,6 @@ export default {
     value: {
       type: Object,
     },
-
     singleFilterValue: {
       type: Object,
       default: () => ({}),
@@ -256,13 +261,35 @@ export default {
         checkboxValueKey,
       );
     },
+    toggleFilterMethodTwo() {
+      var content = document.getElementById(
+        `vue_filter_method_two_${this._uid}`,
+      );
+      content.classList.toggle("show");
+    },
+    toggleFilterMethodOne(index) {
+      var content = document.getElementById(
+        `vue_filter_method_one_${index + 1}`,
+      );
+      content.classList.toggle("show");
+    },
   },
 };
 </script>
-<style scoped>
-.vue-filter__filter-holder {
-  border-bottom: solid black 1px;
+<style>
+.vue-filter__input-holder {
+  height: 0;
   margin-bottom: 10px;
-  padding: 10px;
+  overflow: hidden;
+  padding: 0 10px;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+}
+.show {
+  height: auto;
+  padding: 10px 10px;
 }
 </style>

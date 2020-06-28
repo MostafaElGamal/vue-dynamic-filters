@@ -11,14 +11,17 @@
         @testMethod="testMethod"
       ></vue-filter>
     </div>
-    <!-- {{ test }}
+
+    <hr />
+    <hr />
+    {{ test }}
 
     <vue-filter
       :filters="filters"
       selectValue="id"
       checkboxValue="id"
       v-model="test"
-    ></vue-filter> -->
+    ></vue-filter>
   </div>
 </template>
 
