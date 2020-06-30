@@ -1,15 +1,10 @@
 <template>
-  <div class="vue-filter__checkboxs-holder">
-    <div
-      class="vue-filter__checkbox"
-      v-for="checkbox in options"
-      :key="checkbox.id"
-    >
+  <div :class="`${checkboxHolderClass}`" v-if="checkboxValue">
+    <div :class="`${checkboxClass}`" v-for="(checkbox, i) in options" :key="i">
       <input
-        v-if="checkboxValue"
         type="checkbox"
-        class="vue-filter__checkbox-input"
-        :id="`id_${_uid}${checkbox.id}`"
+        :class="`${checkboxInputClass}`"
+        :id="`id_${_uid}${i}`"
         :value="checkbox[checkboxValue]"
         @change="checkboxChange"
         :checked="
@@ -18,11 +13,17 @@
             : false
         "
       />
+      <label :class="`${checkboxLabelClass}`" :for="`id_${_uid}${i}`">
+        {{ checkbox[checkboxLabelKey] }}
+      </label>
+    </div>
+  </div>
+  <div :class="`${checkboxHolderClass}`" v-else>
+    <div :class="`${checkboxClass}`" v-for="(checkbox, i) in options" :key="i">
       <input
-        v-else
         type="checkbox"
-        class="vue-filter__checkbox-input"
-        :id="`id_${_uid}${checkbox.id}`"
+        :class="`${checkboxInputClass}`"
+        :id="`id_${_uid}${i}`"
         :value="checkbox"
         @change="checkboxChange"
         :checked="
@@ -31,10 +32,7 @@
             : false
         "
       />
-      <label
-        class="vue-filter__checkbox-label"
-        :for="`id_${_uid}${checkbox.id}`"
-      >
+      <label :class="`${checkboxLabelClass}`" :for="`id_${_uid}${i}`">
         {{ checkbox[checkboxLabelKey] }}
       </label>
     </div>
@@ -63,6 +61,23 @@ export default {
     checkboxValue: {
       type: String,
       default: "",
+    },
+    // Checkbox Classes
+    checkboxHolderClass: {
+      type: String,
+      default: "vue-filter__checkboxes-holder",
+    },
+    checkboxClass: {
+      type: String,
+      default: "vue-filter__checkbox",
+    },
+    checkboxLabelClass: {
+      type: String,
+      default: "vue-filter__checkbox-label",
+    },
+    checkboxInputClass: {
+      type: String,
+      default: "vue-filter__checkbox-input",
     },
   },
 

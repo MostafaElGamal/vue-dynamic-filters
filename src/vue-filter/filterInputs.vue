@@ -1,5 +1,5 @@
 <template>
-  <div class="vue-filter__input-holder">
+  <div :class="`vue-filter__input-holder ${filterInputHolderClass} `">
     <check-box
       v-if="filterType == checkboxCheckName"
       :options="options"
@@ -8,6 +8,10 @@
       :checkboxValueKey="checkboxValueKey"
       :checkboxLabelKey="checkboxLabelKey"
       :checkboxValue="checkboxValue"
+      :checkboxHolderClass="checkboxHolderClass"
+      :checkboxClass="checkboxClass"
+      :checkboxLabelClass="checkboxLabelClass"
+      :checkboxInputClass="checkboxInputClass"
       @checkboxChangeToFilterInputs="checkboxChangedToIndex"
     />
     <custom-select
@@ -16,6 +20,7 @@
       :filterValue="filterValue"
       :selectValueKey="selectValueKey"
       :selectValue="selectValue"
+      :selectClass="selectClass"
       :selectDisplayNameKey="selectDisplayNameKey"
     />
     <search
@@ -23,6 +28,10 @@
       :options="options"
       :filterValue="filterValue"
       :searchValueKey="searchValueKey"
+      :searchInputClass="searchInputClass"
+      :searchButtonName="searchButtonName"
+      :searchFormClass="searchFormClass"
+      :searchBtnClass="searchBtnClass"
       @searchChangeToFilterInputs="searchChangedToIndex"
     />
 
@@ -34,6 +43,12 @@
       :minPriceValueKey="minPriceValueKey"
       :maxPriceValueKey="maxPriceValueKey"
       :buttonName="buttonName"
+      :priceFormClass="priceFormClass"
+      :minHolderClass="minHolderClass"
+      :maxHolderClass="maxHolderClass"
+      :priceLabelClass="priceLabelClass"
+      :priceInputClass="priceInputClass"
+      :priceBtnClass="priceBtnClass"
       @priceChangeToFilterInputs="priceChangedToIndex"
     />
   </div>
@@ -127,6 +142,77 @@ export default {
     buttonName: {
       type: String,
       default: "Search",
+    },
+
+    // Classes Api's
+    filterInputHolderClass: {
+      type: String,
+      default: "vue-filter__input-holder",
+    },
+    // Search & Select Classes
+    searchInputClass: {
+      type: String,
+      default: "vue-filter__search",
+    },
+    selectClass: {
+      type: String,
+      default: "vue-filter__select",
+    },
+    searchButtonName: {
+      type: String,
+      default: "Search",
+    },
+    searchFormClass: {
+      type: String,
+      default: "vue-filter__search-form",
+    },
+    searchBtnClass: {
+      type: String,
+      default: "vue-filter__search-btn",
+    },
+
+    // Price Classes
+    priceFormClass: {
+      type: String,
+      default: "vue-filter__price-form",
+    },
+    minHolderClass: {
+      type: String,
+      default: "vue-filter__min-holder",
+    },
+    maxHolderClass: {
+      type: String,
+      default: "vue-filter__max-holder",
+    },
+    priceLabelClass: {
+      type: String,
+      default: "vue-filter__price-label",
+    },
+    priceInputClass: {
+      type: String,
+      default: "vue-filter__price-input",
+    },
+    priceBtnClass: {
+      type: String,
+      default: "vue-filter__price-btn",
+    },
+
+    // Checkbox Classes
+    checkboxHolderClass: {
+      type: String,
+      default: "vue-filter__checkboxes-holder",
+    },
+    checkboxClass: {
+      type: String,
+      default: "vue-filter__checkbox",
+    },
+    checkboxLabelClass: {
+      type: String,
+      default: "vue-filter__checkbox-label",
+    },
+    checkboxInputClass: {
+      type: String,
+      default: "vue-filter__checkbox-input",
     },
   },
   components: {

@@ -1,28 +1,26 @@
 <template>
-  <div class="vue-filter__select-holder">
-    <select
-      v-if="selectValue"
-      class="vue-filter__select-input"
-      v-model="filterValue[selectValueKey]"
+  <select
+    v-if="selectValue"
+    :class="`${selectClass}`"
+    v-model="filterValue[selectValueKey]"
+  >
+    <option
+      v-for="(option, i) in options"
+      :key="i"
+      :value="option[selectValue]"
     >
-      <option
-        v-for="(option, i) in options"
-        :key="i"
-        :value="option[selectValue]"
-      >
-        {{ option[selectDisplayNameKey] }}
-      </option>
-    </select>
-    <select
-      v-else
-      class="vue-filter__select-input"
-      v-model="filterValue[selectValueKey]"
-    >
-      <option v-for="(option, i) in options" :key="i" :value="option">
-        {{ option[selectDisplayNameKey] }}
-      </option>
-    </select>
-  </div>
+      {{ option[selectDisplayNameKey] }}
+    </option>
+  </select>
+  <select
+    v-else
+    :class="`${selectClass}`"
+    v-model="filterValue[selectValueKey]"
+  >
+    <option v-for="(option, i) in options" :key="i" :value="option">
+      {{ option[selectDisplayNameKey] }}
+    </option>
+  </select>
 </template>
 <script>
 export default {
@@ -48,6 +46,10 @@ export default {
       type: String,
       default: "",
     },
+    selectClass: {
+      type: String,
+      default: "vue-filter__select",
+    },
   },
 };
 </script>
@@ -55,5 +57,8 @@ export default {
 .vue-filter__select-holder {
   display: flex;
   flex-direction: column;
+}
+.vue-filter__select {
+  width: 100%;
 }
 </style>

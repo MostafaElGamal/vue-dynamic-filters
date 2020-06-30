@@ -1,74 +1,109 @@
 <template>
-  <div class="vue-filter">
-    <div class="vue-filter__method-one" v-if="methodType == 'm1'">
-      <div
-        class="vue-filter__filter-holder"
-        v-for="(filter, i) in filters"
-        :key="i"
+  <div :class="`${vueFilterClassMethodOne}`" v-if="methodType == 'm1'">
+    <div
+      :class="`${filterHolderClass}`"
+      v-for="(filter, i) in filters"
+      :key="i"
+    >
+      <button
+        @click="toggleFilterMethodOne(i)"
+        :class="`${filterCollapseBtnClass}`"
       >
-        <button
-          @click="toggleFilterMethodOne(i)"
-          class="vue-filter__filter-btn"
-        >
-          {{ filter[filterTitleKey] }}
-        </button>
+        {{ filter[filterTitleKey] }}
+      </button>
 
-        <filter-inputs
-          :id="`vue_filter_method_one_${i + 1}`"
-          :filterValue="value"
-          :filterType="filter[filterTypeKey]"
-          :options="filter[filterOptionsKey]"
-          :checkboxValue="checkboxValue"
-          :checkboxValueKey="checkboxValueKey"
-          :checkboxCheckName="checkboxCheckName"
-          :checkboxLabelKey="checkboxLabelKey"
-          :selectCheckName="selectCheckName"
-          :selectValue="selectValue"
-          :selectValueKey="selectValueKey"
-          :selectDisplayNameKey="selectDisplayNameKey"
-          :searchValueKey="searchValueKey"
-          :searchCheckName="searchCheckName"
-          :priceCheckName="priceCheckName"
-          :minLabel="minLabel"
-          :maxLabel="maxLabel"
-          :maxPriceValueKey="maxPriceValueKey"
-          :buttonName="buttonName"
-          @checkboxChangedToVueFilter="sentCheckbox"
-          @searchChangedToVueFilter="sentSearch"
-          @priceChangedToVueFilter="sentPrice"
-        ></filter-inputs>
-      </div>
+      <filter-inputs
+        :class="{ show: displayType }"
+        :id="`vue_filter_method_one_${i + 1}`"
+        :filterValue="value"
+        :filterType="filter[filterTypeKey]"
+        :options="filter[filterOptionsKey]"
+        :checkboxValue="checkboxValue"
+        :checkboxValueKey="checkboxValueKey"
+        :checkboxCheckName="checkboxCheckName"
+        :checkboxLabelKey="checkboxLabelKey"
+        :selectCheckName="selectCheckName"
+        :selectValue="selectValue"
+        :selectValueKey="selectValueKey"
+        :selectDisplayNameKey="selectDisplayNameKey"
+        :searchValueKey="searchValueKey"
+        :searchCheckName="searchCheckName"
+        :priceCheckName="priceCheckName"
+        :minLabel="minLabel"
+        :maxLabel="maxLabel"
+        :maxPriceValueKey="maxPriceValueKey"
+        :buttonName="buttonName"
+        :filterInputHolderClass="filterInputHolderClass"
+        :searchInputClass="searchInputClass"
+        :searchButtonName="searchButtonName"
+        :searchFormClass="searchFormClass"
+        :searchBtnClass="searchBtnClass"
+        :priceFormClass="priceFormClass"
+        :minHolderClass="minHolderClass"
+        :maxHolderClass="maxHolderClass"
+        :priceLabelClass="priceLabelClass"
+        :priceInputClass="priceInputClass"
+        :priceBtnClass="priceBtnClass"
+        :selectClass="selectClass"
+        :checkboxHolderClass="checkboxHolderClass"
+        :checkboxClass="checkboxClass"
+        :checkboxLabelClass="checkboxLabelClass"
+        :checkboxInputClass="checkboxInputClass"
+        @checkboxChangedToVueFilter="sentCheckbox"
+        @searchChangedToVueFilter="sentSearch"
+        @priceChangedToVueFilter="sentPrice"
+      ></filter-inputs>
     </div>
-    <div class="vue-filter__method-two" v-else>
-      <div class="vue-filter__filter-holder">
-        <button @click="toggleFilterMethodTwo" class="vue-filter__filter-btn">
-          {{ filter[filterTitleKey] }}
-        </button>
-        <filter-inputs
-          :id="`vue_filter_method_two_${_uid}`"
-          :filterValue="singleFilterValue"
-          :filterType="filter[filterTypeKey]"
-          :options="filter[filterOptionsKey]"
-          :checkboxValue="checkboxValue"
-          :checkboxValueKey="checkboxValueKey"
-          :checkboxCheckName="checkboxCheckName"
-          :checkboxLabelKey="checkboxLabelKey"
-          :selectCheckName="selectCheckName"
-          :selectValue="selectValue"
-          :selectValueKey="selectValueKey"
-          :selectDisplayNameKey="selectDisplayNameKey"
-          :searchValueKey="searchValueKey"
-          :searchCheckName="searchCheckName"
-          :priceCheckName="priceCheckName"
-          :minLabel="minLabel"
-          :maxLabel="maxLabel"
-          :maxPriceValueKey="maxPriceValueKey"
-          :buttonName="buttonName"
-          @checkboxChangedToVueFilter="sentCheckbox"
-          @searchChangedToVueFilter="sentSearch"
-          @priceChangedToVueFilter="sentPrice"
-        ></filter-inputs>
-      </div>
+  </div>
+  <div :class="`${vueFilterClassMethodTwo}`" v-else>
+    <div :class="`${filterHolderClass}`">
+      <button
+        @click="toggleFilterMethodTwo"
+        :class="`${filterCollapseBtnClass}`"
+      >
+        {{ filter[filterTitleKey] }}
+      </button>
+      <filter-inputs
+        :class="{ show: displayType }"
+        :id="`vue_filter_method_two_${_uid}`"
+        :filterValue="singleFilterValue"
+        :filterType="filter[filterTypeKey]"
+        :options="filter[filterOptionsKey]"
+        :checkboxValue="checkboxValue"
+        :checkboxValueKey="checkboxValueKey"
+        :checkboxCheckName="checkboxCheckName"
+        :checkboxLabelKey="checkboxLabelKey"
+        :selectCheckName="selectCheckName"
+        :selectValue="selectValue"
+        :selectValueKey="selectValueKey"
+        :selectDisplayNameKey="selectDisplayNameKey"
+        :searchValueKey="searchValueKey"
+        :searchCheckName="searchCheckName"
+        :priceCheckName="priceCheckName"
+        :minLabel="minLabel"
+        :maxLabel="maxLabel"
+        :maxPriceValueKey="maxPriceValueKey"
+        :buttonName="buttonName"
+        :filterInputHolderClass="filterInputHolderClass"
+        :searchInputClass="searchInputClass"
+        :searchButtonName="searchButtonName"
+        :searchFormClass="searchFormClass"
+        :searchBtnClass="searchBtnClass"
+        :priceFormClass="priceFormClass"
+        :minHolderClass="minHolderClass"
+        :maxHolderClass="maxHolderClass"
+        :priceLabelClass="priceLabelClass"
+        :priceInputClass="priceInputClass"
+        :priceBtnClass="priceBtnClass"
+        :selectClass="selectClass"
+        :checkboxHolderClass="checkboxHolderClass"
+        :checkboxClass="checkboxClass"
+        :checkboxLabelClass="checkboxLabelClass"
+        :checkboxInputClass="checkboxInputClass"
+        @checkboxChangedToVueFilter="sentCheckbox"
+        @searchChangedToVueFilter="sentSearch"
+        @priceChangedToVueFilter="sentPrice"
+      ></filter-inputs>
     </div>
   </div>
 </template>
@@ -112,7 +147,7 @@ export default {
       type: String,
       default: "options",
     },
-    displayTypeKey: {
+    displayType: {
       type: Boolean,
       default: true,
     },
@@ -187,6 +222,96 @@ export default {
     buttonName: {
       type: String,
       default: "Search",
+    },
+
+    // Classes Api's
+    // -------Main Classes
+    vueFilterClassMethodOne: {
+      type: String,
+      default: "vue-filter__method-one",
+    },
+    vueFilterClassMethodTwo: {
+      type: String,
+      default: "vue-filter__method-two",
+    },
+    filterHolderClass: {
+      type: String,
+      default: "vue-filter__filter-holder",
+    },
+    filterCollapseBtnClass: {
+      type: String,
+      default: "vue-filter__filter-btn",
+    },
+    filterInputHolderClass: {
+      type: String,
+      default: "vue-filter__input-holder",
+    },
+
+    // Search Classes
+    searchInputClass: {
+      type: String,
+      default: "vue-filter__search",
+    },
+    searchButtonName: {
+      type: String,
+      default: "Search",
+    },
+    searchFormClass: {
+      type: String,
+      default: "vue-filter__search-form",
+    },
+    searchBtnClass: {
+      type: String,
+      default: "vue-filter__search-btn",
+    },
+    // Select Classes
+    selectClass: {
+      type: String,
+      default: "vue-filter__select",
+    },
+
+    // Price Classes
+    priceFormClass: {
+      type: String,
+      default: "vue-filter__price-form",
+    },
+    minHolderClass: {
+      type: String,
+      default: "vue-filter__min-holder",
+    },
+    maxHolderClass: {
+      type: String,
+      default: "vue-filter__max-holder",
+    },
+    priceLabelClass: {
+      type: String,
+      default: "vue-filter__price-label",
+    },
+    priceInputClass: {
+      type: String,
+      default: "vue-filter__price-input",
+    },
+    priceBtnClass: {
+      type: String,
+      default: "vue-filter__price-btn",
+    },
+
+    // Checkbox Classes
+    checkboxHolderClass: {
+      type: String,
+      default: "vue-filter__checkboxes-holder",
+    },
+    checkboxClass: {
+      type: String,
+      default: "vue-filter__checkbox",
+    },
+    checkboxLabelClass: {
+      type: String,
+      default: "vue-filter__checkbox-label",
+    },
+    checkboxInputClass: {
+      type: String,
+      default: "vue-filter__checkbox-input",
     },
   },
   components: {
@@ -291,5 +416,26 @@ export default {
 .show {
   height: auto;
   padding: 10px 10px;
+}
+.vue-filter__filter-btn {
+  position: relative;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: #444;
+  font-weight: 600;
+  margin: 30px 0 0;
+  width: 100%;
+  background: transparent;
+  border: 0;
+}
+.vue-filter__filter-btn:after {
+  position: absolute;
+  display: block;
+  top: 0;
+  right: -3px;
+  content: "\f0d7";
+  font-family: FontAwesome;
+  color: #444;
+  font-size: 17px;
 }
 </style>

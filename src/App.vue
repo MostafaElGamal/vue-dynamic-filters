@@ -1,24 +1,27 @@
 <template>
   <div id="app">
     {{ testCheckbox }}
-    <div class="filter" v-for="filter in filters" :key="filter.id">
+    <div v-for="filter in filters" :key="filter.id">
       <vue-filter
         selectValue="id"
         checkboxValue="id"
         methodType="m2"
+        :displayType="false"
+        filterInputHolderClass="asdasd"
+        searchInputClass="testsearcch"
         :filter="filter"
         :singleFilterValue="testCheckbox"
         @testMethod="testMethod"
       ></vue-filter>
     </div>
-
     <hr />
     <hr />
     {{ test }}
-
+    <hr />
     <vue-filter
       :filters="filters"
       selectValue="id"
+      :displayType="false"
       checkboxValue="id"
       v-model="test"
     ></vue-filter>
