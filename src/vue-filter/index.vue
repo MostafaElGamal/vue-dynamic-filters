@@ -386,6 +386,7 @@ export default {
         checkboxValueKey,
       );
     },
+
     toggleFilterMethodTwo() {
       var content = document.getElementById(
         `vue_filter_method_two_${this._uid}`,
