@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    {{ testCheckbox }}
+    <!-- {{ testCheckbox }}
     <div v-for="filter in filters" :key="filter.id">
       <vue-filter
         selectValue="id"
@@ -16,11 +16,10 @@
     </div>
     <hr />
     <hr />
+    <hr /> -->
     {{ test }}
-    <hr />
     <vue-filter
       :filters="filters"
-      selectValue="id"
       :displayType="false"
       checkboxValue="id"
       v-model="test"

@@ -323,31 +323,6 @@ export default {
     },
   },
   methods: {
-    sentInput() {
-      if (this.checkFirstMethod) {
-        this.$emit("input", { ...this.value });
-      } else {
-        this.$emit("testMethod", { ...this.singleFilterValue });
-      }
-    },
-    filterValueAndKey(valueKey) {
-      if (this.checkFirstMethod) {
-        return [this.value, valueKey];
-      } else {
-        return [this.singleFilterValue, valueKey];
-      }
-    },
-    deleteEmptyFilter(filterCondition, valueKey) {
-      let [value] = this.filterValueAndKey();
-
-      if (!filterCondition) {
-        delete value[valueKey];
-      }
-    },
-    checkIfEmptyAndSent(condition, valueKey) {
-      this.deleteEmptyFilter(condition, valueKey);
-      this.sentInput();
-    },
     sentSearch(test) {
       let [value, searchValueKey] = this.filterValueAndKey(this.searchValueKey);
       value[searchValueKey] = test;
@@ -385,6 +360,32 @@ export default {
         value[checkboxValueKey].length,
         checkboxValueKey,
       );
+    },
+
+    sentInput() {
+      if (this.checkFirstMethod) {
+        this.$emit("input", { ...this.value });
+      } else {
+        this.$emit("testMethod", { ...this.singleFilterValue });
+      }
+    },
+    filterValueAndKey(valueKey) {
+      if (this.checkFirstMethod) {
+        return [this.value, valueKey];
+      } else {
+        return [this.singleFilterValue, valueKey];
+      }
+    },
+    deleteEmptyFilter(filterCondition, valueKey) {
+      let [value] = this.filterValueAndKey();
+
+      if (!filterCondition) {
+        delete value[valueKey];
+      }
+    },
+    checkIfEmptyAndSent(condition, valueKey) {
+      this.deleteEmptyFilter(condition, valueKey);
+      this.sentInput();
     },
 
     toggleFilterMethodTwo() {
