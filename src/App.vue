@@ -1,29 +1,29 @@
 <template>
   <div id="app">
-    <!-- {{ testCheckbox }}
+    Filter One :{{ filterOneValues }}
+    <br />
+    Filter Two {{ filterTwoValues }}
+    <vue-filter
+      :filters="filters"
+      :displayType="false"
+      checkboxValue="id"
+      v-model="filterOneValues"
+    ></vue-filter>
+    <hr />
+    <hr />
+    <hr />
+
     <div v-for="filter in filters" :key="filter.id">
       <vue-filter
         selectValue="id"
         checkboxValue="id"
         methodType="m2"
         :displayType="false"
-        filterInputHolderClass="asdasd"
-        searchInputClass="testsearcch"
         :filter="filter"
-        :singleFilterValue="testCheckbox"
-        @testMethod="testMethod"
+        :singleFilterValue="filterTwoValues"
+        @methodTwoValueChaned="changeValue"
       ></vue-filter>
     </div>
-    <hr />
-    <hr />
-    <hr /> -->
-    {{ test }}
-    <vue-filter
-      :filters="filters"
-      :displayType="false"
-      checkboxValue="id"
-      v-model="test"
-    ></vue-filter>
   </div>
 </template>
 
@@ -38,19 +38,13 @@ export default {
   data() {
     return {
       filters: filters,
-      test: {},
-      testCheckbox: {
-        search: "wdasdasd",
-        checkbox: [4, 2],
-        min: 11,
-        max: 123,
-        select: 2,
-      },
+      filterOneValues: {},
+      filterTwoValues: {},
     };
   },
   methods: {
-    testMethod(value) {
-      this.testCheckbox = value;
+    changeValue(value) {
+      this.filterTwoValues = value;
     },
   },
 };

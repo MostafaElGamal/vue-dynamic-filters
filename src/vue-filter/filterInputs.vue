@@ -54,10 +54,10 @@
   </div>
 </template>
 <script>
-import checkBox from "./Inputs/checkbox";
-import customSelect from "./Inputs/customSelect";
-import search from "./Inputs/search";
-import price from "./Inputs/price";
+import checkBox from "./Inputs/checkbox.vue";
+import customSelect from "./Inputs/customSelect.vue";
+import search from "./Inputs/search.vue";
+import price from "./Inputs/price.vue";
 export default {
   name: "filter-inputs",
   props: {

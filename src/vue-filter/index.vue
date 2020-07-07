@@ -108,7 +108,7 @@
   </div>
 </template>
 <script>
-import filterInputs from "./filterInputs";
+import filterInputs from "./filterInputs.vue";
 export default {
   name: "vue-filter",
   props: {
@@ -364,9 +364,12 @@ export default {
 
     sentInput() {
       if (this.checkFirstMethod) {
-        this.$emit("input", { ...this.value });
+        this.$emit("input", Object.assign({}, this.value));
       } else {
-        this.$emit("testMethod", { ...this.singleFilterValue });
+        this.$emit(
+          "methodTwoValueChaned",
+          Object.assign({}, this.singleFilterValue),
+        );
       }
     },
     filterValueAndKey(valueKey) {
@@ -399,6 +402,15 @@ export default {
         `vue_filter_method_one_${index + 1}`,
       );
       content.classList.toggle("show");
+    },
+  },
+  watch: {
+    value: {
+      handler: function() {
+        const [value] = this.filterValueAndKey();
+        this.$emit("change", Object.assign({}, value));
+      },
+      deep: true,
     },
   },
 };
