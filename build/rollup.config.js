@@ -4,7 +4,7 @@ import buble from "@rollup/plugin-buble"; // Transpile/polyfill with reasonable 
 export default {
   input: "src/entry.js", // Path relative to package.json
   output: {
-    name: "vueFilter",
+    name: "vueDynamicFilters",
     exports: "default",
   },
   plugins: [

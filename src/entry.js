@@ -1,9 +1,9 @@
-import component from "./vue-filter/index.vue";
+import component from "./vue-dynamic-filters/index.vue";
 
 function install(Vue) {
   if (install.installed) return;
   install.installed = true;
-  Vue.component("vue-filter", component);
+  Vue.component("vue-dynamic-filters", component);
 }
 
 const plugin = {
