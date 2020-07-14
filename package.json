@@ -1,6 +1,6 @@
 {
   "name": "vue-dynamic-filters",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "dist/vue-filter.umd.js",
   "module": "dist/vue-filter.esm.js",
   "unpkg": "dist/vue-filter.min.js",
@@ -17,6 +17,7 @@
     "serve": "vue-cli-service serve",
     "test:unit": "vue-cli-service test:unit --watch",
     "lint": "vue-cli-service lint",
+    "build-demo": "vue-cli-service build",
     "build": "npm run build:unpkg & npm run build:es & npm run build:umd",
     "build:umd": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format umd --file dist/vue-filter.umd.js",
     "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es --file dist/vue-filter.esm.js",
