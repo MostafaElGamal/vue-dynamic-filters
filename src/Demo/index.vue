@@ -7,6 +7,7 @@
           :filters="filters"
           :displayType="false"
           checkboxValue="id"
+          selectValue="id"
           v-model="filterOneValues"
           @change="test"
         ></vue-dynamic-filters>
@@ -25,7 +26,14 @@
           ></vue-dynamic-filters>
         </div>
       </div>
-      <div class="products">
+      <div class="products" v-if="filteredProducts.length">
+        <product-card
+          :product="product"
+          v-for="product in filteredProducts"
+          :key="product.id"
+        ></product-card>
+      </div>
+      <div class="products" v-else>
         <product-card
           :product="product"
           v-for="product in products"
@@ -61,12 +69,19 @@ export default {
       this.filterTwoValues = value;
     },
     test(value) {
-      if (value.search) {
-        const newArr = this.products.filter((ele) =>
-          ele.title.indexOf(value.search) >= 0 ? true : false,
-        );
-        console.log(newArr);
-      }
+      const newArr = this.products.filter((ele) => {
+        if (
+          ele.title.indexOf(value.search) >= 0 ||
+          value.min <= ele.price ||
+          value.max >= ele.price ||
+          ele.category_id == value.select ||
+          ele.options.includes(value.checkbox ? value.checkbox[0] : 0)
+        ) {
+          return true;
+        }
+        return false;
+      });
+      this.filteredProducts = newArr;
     },
   },
 };
