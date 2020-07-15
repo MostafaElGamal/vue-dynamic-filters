@@ -11,7 +11,7 @@ This is for `vue 2.x`+
 
 ## Installing
 
-This package is available on npm.
+This package is availabel on npm.
 
 Using npm:
 
@@ -35,7 +35,7 @@ vue-dynamic-filters can be used in two methods, the first method is to give `vue
 
 ### First Method
 
-you don't have to worry about looping and the output value the first method of the `vue-dynamic-filters` will handel that for you, you can see the first example code right here [First Method Code](https://github.com/MostafaElGamal/vue-dynamics-filters/blob/master/src/Demo/firstExample.vue) the products data is just for testing purpsoes
+you don't have to worry about looping throw the filters `vue-dynamic-filters` will do all the work for you and the output value will also handle that for you, you can see the first example code right here -> [First Method Code](https://github.com/MostafaElGamal/vue-dynamics-filters/blob/master/src/Demo/firstExample.vue) the the products data is just for testing purposes.
 
 ```js
 <template>
@@ -92,7 +92,7 @@ import vueDynamicFilters from "vue-dynamic-filters";
 
 ### Second Method
 
-Second method let's you control in every input the `vue-daynamic-filters` and still have the same result, when I say conrtrol of the output keys on every input, you can also check the second method example [Second Method Code](https://github.com/MostafaElGamal/vue-dynamics-filters/blob/master/src/Demo/secondExample.vue)
+The second method lets you control in every input, the `vue-dynamic-filters` will handle to put all values in one property in this example is `filterValues` and also you can control of the output keys on every input, you can also check the second method example [Second Method Code](https://github.com/MostafaElGamal/vue-dynamics-filters/blob/master/src/Demo/secondExample.vue)
 
 ```js
 <template>
@@ -175,264 +175,264 @@ export default{
 </script>
 ```
 
-as you can see in this example you can loop throw the `vue-dynamic-filters` and also you can control the output object key on every input if the filters are coming from some sort of api or something like that.
+as you can see in this example you can loop throw the `vue-dynamic-filters` and also you can control the output object key on every input if the filters are coming from some sort of API or something like that.
 
 ## Options
 
 #### filters
 
-That the array that include the inputs like the first examples above, only used by default for the first method.
+That the array that includes the inputs like the first examples above, only used by default for the first method.
 
 _Default:_ `[]`
 
 #### filter
 
-That the object that include the input like the second examples above, only used by default for the second method.
+That the object that includes the input like the second examples above, only used by default for the second method.
 
 _Default:_ `{}`
 
 #### methodType
 
-This proprty let the `vue-dynamic-filters` know that will work on the second method and the dev will loop throw the component and use the `@methodTwoValueChaned` event and by default use the first method.
+This property lets the `vue-dynamic-filters` know that you will work on the second method of the package and the developer will loop throw the component and use the `@methodTwoValueChaned` event and by default use the first method.
 
 _Default:_ `m1`
 
 #### singleFilterValue
 
-This is proprty only use in method `m2` only this proprty you can update and add like `v-model` but only used for `m2`.
+This is property only use for method `m2` only this property you can update and add like `v-model` but only used for `m2` check the second example for more clarification.
 
 _Default:_ `{}`
 
 #### filterTitleKey
 
-filter title key used for the text in the button for example `search` , `category`, etc..., you specife the key that inside the `filters` array or the `filter` object by default is
+filter title key used for the text in the collapse button for example `search`, `category`, etc..., you specify the key that inside the `filters` array or the `filter` object by default is a title.
 
 _Default:_ `title`
 
 #### filterTypeKey
 
-This allows you to control the key that check for the key that inside `filters` array or `filter` object for example `filter_type:'select'`, you can check the two example for more clarification.
+This allows you to control the key that checks for the object that inside `filters` array or `filter` object that responsible for check filter type object for example `filter_type: 'select'`, you can check the examples above for more clarification.
 
 _Default:_ `filter_type`
 
 #### filterOptionsKey
 
-This proprty only used for the `select` input and `checkbox` input that the key `vue-dynamic-filters` will loop in to display the values and by defalut `options`
+This property only used for the `select` input and `checkbox` input that the key `vue-dynamic-filters` will loop in to display the values that inside the option value and by default `options`
 
 _Default:_ `options`
 
 #### displayType
 
-This prorpty allow to control the if the filter is collapse or open, you can check the second example for more clarification.
+This property allows you to control the filter is collapsed or open, you can check the second example for more clarification.
 
 _Default:_ `true`
 
 #### checkboxCheckName
 
-This proprty allows you to controll the validation on the `checkbox` name and this value oprate with `filterTypeKey` proprty, on other words you it is used for validation to check if the `filterTypeKey == checkboxCheckName` if true will display the filter if not will not display it.
+This property allows you to control the validation on the `checkbox` name and this value operates with `filterTypeKey` property, in other words, is used for validation to check if the `filterTypeKey == checkboxCheckName` if true will display the filter.
 
 _Default:_ `checkbox`
 
 #### checkboxLabelKey
 
-This proprty is the key for title of the checkbox object and this `checkboxLabelKey` will be the in the label of the input key.
+This property is the key for the title of the checkbox object and this `checkboxLabelKey` will be in the label of the input key.
 
 _Default:_ `title`
 
 #### checkboxValueKey
 
-This proprty is let you to control the name of the returnd key to the selected values.
+This property is to let you control the name of the returned key to the selected values.
 
 _Default:_ `checkbox`
 
 #### checkboxValue
 
-This proprty is let you to control checkbox value, for example you want the `id` in to return so you will pass this proprty and in `checkboxValueKey` will return the `id` check example two for more clarification and by default `vue-dynamic-filters` return the object.
+This property is let you control checkbox value, for example, you want the `id` to return so you will pass this property and in `checkboxValueKey` will return the `id` check example two for more clarification and by default `vue-dynamic-filters` return the full object, the `checkboxValue` act like this `checkbox[checkboxValue]` .
 
-_Default:_ `` `empty string that mean you want to return the full object not key inside of it`
+_Default:_ `` `an empty string that means you want to return the full object not key inside of it`
 
 #### selectCheckName
 
-This proprty allows you to controll the validation on the `select` name and this value oprate with `filterTypeKey` proprty, on other words you it is used for validation to check if the `filterTypeKey == selectCheckName` if true will display the filter if not will not display it.
+This property allows you to control the validation on the `select` name and this value operates with `filterTypeKey` property, in other words, is used for validation to check if the `filterTypeKey == selectCheckName` if true will display the filter.
 
 _Default:_ `select`
 
 #### selectValueKey
 
-This proprty is let you to control the name of the returnd key to the selected values.
+This property is to let you control the name of the returned key to the selected values.
 
 _Default:_ `select`
 
 #### selectDisplayNameKey
 
-This proprty is the key for title of the select option that will display in the select filter.
+This property is the key to the title of the select option that will display in the select filter.
 
 _Default:_ `title`
 
 #### selectValue
 
-This proprty is let you to control checkbox value, for example you want the `id` in to return so you will pass this proprty and in `selectValueKey` will return the `id` check example two for more clarification and by default `vue-dynamic-filters` return the object.
+This property is let you control select value, for example, you want the `id` to return so you will pass this property and in `selectValue` will return the `id` check example two for more clarification and by default `vue-dynamic-filters` return the full object, the `selectValue` act like this `select[selectValue]` .
 
-_Default:_ `` `empty string that mean you want to return the full object not key inside of it`
+_Default:_ `` `an empty string that means you want to return the full object not key inside of it`
 
 #### searchCheckName
 
-This proprty allows you to controll the validation on the `select` name and this value oprate with `filterTypeKey` proprty, on other words you it is used for validation to check if the `filterTypeKey == searchCheckName` if true will display the filter if not will not display it.
+This property allows you to control the validation on the `search` name and this value operates with `filterTypeKey` property, in other words, is used for validation to check if the `filterTypeKey == searchCheckName` if true will display the filter.
 
-_Default:_ `search`
+_Default:_ `text`
 
 #### searchValueKey
 
-This proprty is let you to control the name of the returnd key to the selected values.
+This property is to let you control the name of the returned key to the selected values.
 
-_Default:_ `select`
+_Default:_ `search`
 
 #### searchButtonName
 
-This proprty is simply the text inside the button.
+This property is simply the text inside the button.
 
 _Default:_ `Search`
 
 #### priceCheckName
 
-This proprty allows you to controll the validation on the `price` name and this value oprate with `filterTypeKey` proprty, on other words you it is used for validation to check if the `filterTypeKey == priceCheckName` if true will display the filter if not will not display it.
+This property allows you to control the validation on the `price` name and this value operates with `filterTypeKey` property, in other words, is used for validation to check if the `filterTypeKey == priceCheckName` if true will display the filter.
 
 _Default:_ `price`
 
 #### minLabel
 
-This proprty is the key for title of the checkbox object and this `minLabel` will be the in the label of the input key.
+This property is simply the text inside the key for the title of the price object and this `minLabel` will be in the label of the input.
 
 _Default:_ `min`
 
 #### maxLabel
 
-This proprty is the key for title of the checkbox object and this `maxLabel` will be the in the label of the input key.
+This property is simply the text inside the key for the title of the price object and this `maxLabel` will be in the label of the input.
 
 _Default:_ `max`
 
 #### minPriceValueKey
 
-This proprty is let you to control the name of the returnd key to the selected values.
+This property is to let you control the name of the returned key to the selected values.
 
 _Default:_ `min`
 
 #### maxPriceValueKey
 
-This proprty is let you to control the name of the returnd key to the selected values.
+This property is to let you control the name of the returned key to the selected values.
 
 _Default:_ `max`
 
 #### pricebuttonName
 
-This proprty is simply the text inside the button.
+This property is simply the text inside the button.
 
 _Default:_ `Search`
 
 #### vueFilterClassMethodOne
 
-This proprty is a class that holds the all filters.
+This property is a class that holds filters.
 
 _Default:_ `vue-filter__method-one`
 
 #### vueFilterClassMethodTwo
 
-This proprty is a class that holds the all filters.
+This property is a class that holds every filters.
 
 _Default:_ `vue-filter__method-two`
 
 #### filterHolderClass
 
-This proprty is a class that holds only one filter.
+This property is a class that holds only one filter.
 
 _Default:_ `vue-filter__filter-holder`
 
 #### filterInputHolderClass
 
-This proprty is a class that holds only one input.
+This property is a class that holds only one input.
 
 _Default:_ `vue-filter__input-holder`
 
 #### checkboxHolderClass
 
-This proprty is a class that for holder of all the checkboxes.
+This property is a class for the holder of all the checkboxes.
 
 _Default:_ `vue-filter__checkboxes-holder`
 
 #### checkboxClass
 
-This proprty is a class that for holdes input and the label.
+This property is a class that holds input and the label of the every checkbox.
 
 _Default:_ `vue-filter__checkbox`
 
-#### checkboxClass
+#### checkboxLabelClass
 
-This proprty is a class that for checkbox lable.
+This property is a class for checkbox label.
 
 _Default:_ `vue-filter__checkbox-label`
 
 #### checkboxInputClass
 
-This proprty is a class that for checkbox input.
+This property is a class for checkbox input.
 
 _Default:_ `vue-filter__checkbox-input`
 
 #### searchInputClass
 
-This proprty is a class that for the search input.
+This property is a class for the search input.
 
 _Default:_ `vue-filter__search`
 
 #### searchFormClass
 
-This proprty is a class that for the search form.
+This property is a class for the search form.
 
 _Default:_ `vue-filter__search-form`
 
 #### searchBtnClass
 
-This proprty is a class that for the search button.
+This property is a class for the search button.
 
-_Default:_ `vue-filter__search-form`
+_Default:_ `vue-filter__search-btn`
 
 #### selectClass
 
-This proprty is a class that for the select input.
+This property is a class for the select input.
 
 _Default:_ `vue-filter__select`
 
 #### priceFormClass
 
-This proprty is a class that for the search form.
+This property is a class for the search form.
 
 _Default:_ `vue-filter__price-form`
 
 #### minHolderClass
 
-This proprty is a class that for the holder min price label and the input.
+This property is a class for the holder min price label and the input.
 
 _Default:_ `vue-filter__min-holder`
 
 #### maxHolderClass
 
-This proprty is a class that for the holder max price label and the input.
+This property is a class for the holder max price label and the input.
 
 _Default:_ `vue-filter__max-holder`
 
 #### priceLabelClass
 
-This proprty is a class that for price lable.
+This property is a class for price label.
 
 _Default:_ `vue-filter__price-label`
 
 #### priceInputClass
 
-This proprty is a class that for price input `min` & `max`.
+This property is a class for price input `min` & `max`.
 
 _Default:_ `vue-filter__price-input`
 
 #### priceBtnClass
 
-This proprty is a class that for price button.
+This property is a class for price button.
 
 _Default:_ `vue-filter__price-btn`

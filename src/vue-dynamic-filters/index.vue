@@ -251,6 +251,24 @@ export default {
       default: "vue-filter__input-holder",
     },
 
+    // Checkbox Classes
+    checkboxHolderClass: {
+      type: String,
+      default: "vue-filter__checkboxes-holder",
+    },
+    checkboxClass: {
+      type: String,
+      default: "vue-filter__checkbox",
+    },
+    checkboxLabelClass: {
+      type: String,
+      default: "vue-filter__checkbox-label",
+    },
+    checkboxInputClass: {
+      type: String,
+      default: "vue-filter__checkbox-input",
+    },
+
     // Search Classes
     searchInputClass: {
       type: String,
@@ -296,24 +314,6 @@ export default {
     priceBtnClass: {
       type: String,
       default: "vue-filter__price-btn",
-    },
-
-    // Checkbox Classes
-    checkboxHolderClass: {
-      type: String,
-      default: "vue-filter__checkboxes-holder",
-    },
-    checkboxClass: {
-      type: String,
-      default: "vue-filter__checkbox",
-    },
-    checkboxLabelClass: {
-      type: String,
-      default: "vue-filter__checkbox-label",
-    },
-    checkboxInputClass: {
-      type: String,
-      default: "vue-filter__checkbox-input",
     },
   },
   components: {
