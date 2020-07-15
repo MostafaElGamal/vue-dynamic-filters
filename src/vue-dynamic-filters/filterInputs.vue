@@ -42,7 +42,7 @@
       :maxLabel="maxLabel"
       :minPriceValueKey="minPriceValueKey"
       :maxPriceValueKey="maxPriceValueKey"
-      :buttonName="buttonName"
+      :pricebuttonName="pricebuttonName"
       :priceFormClass="priceFormClass"
       :minHolderClass="minHolderClass"
       :maxHolderClass="maxHolderClass"
@@ -139,7 +139,7 @@ export default {
       type: String,
       default: "max",
     },
-    buttonName: {
+    pricebuttonName: {
       type: String,
       default: "Search",
     },

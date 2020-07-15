@@ -25,7 +25,7 @@
       />
     </div>
     <button type="submit" :class="`${priceBtnClass}`">
-      {{ buttonName }}
+      {{ pricebuttonName }}
     </button>
   </form>
 </template>
@@ -53,7 +53,7 @@ export default {
       type: String,
       default: "max",
     },
-    buttonName: {
+    pricebuttonName: {
       type: String,
       default: "Search",
     },

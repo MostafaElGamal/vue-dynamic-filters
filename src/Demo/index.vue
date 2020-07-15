@@ -24,6 +24,7 @@ export default {
 }
 .demo {
   display: flex;
+  margin-top: 1rem;
 }
 .products {
   width: 100%;

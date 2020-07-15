@@ -32,7 +32,7 @@
         :minLabel="minLabel"
         :maxLabel="maxLabel"
         :maxPriceValueKey="maxPriceValueKey"
-        :buttonName="buttonName"
+        :pricebuttonName="pricebuttonName"
         :filterInputHolderClass="filterInputHolderClass"
         :searchInputClass="searchInputClass"
         :searchButtonName="searchButtonName"
@@ -83,7 +83,7 @@
         :minLabel="minLabel"
         :maxLabel="maxLabel"
         :maxPriceValueKey="maxPriceValueKey"
-        :buttonName="buttonName"
+        :pricebuttonName="pricebuttonName"
         :filterInputHolderClass="filterInputHolderClass"
         :searchInputClass="searchInputClass"
         :searchButtonName="searchButtonName"
@@ -189,13 +189,17 @@ export default {
     },
 
     // Search Api's
+    searchCheckName: {
+      type: String,
+      default: "text",
+    },
     searchValueKey: {
       type: String,
       default: "search",
     },
-    searchCheckName: {
+    searchButtonName: {
       type: String,
-      default: "text",
+      default: "Search",
     },
 
     // Price Api's
@@ -219,7 +223,7 @@ export default {
       type: String,
       default: "max",
     },
-    buttonName: {
+    pricebuttonName: {
       type: String,
       default: "Search",
     },
@@ -252,10 +256,7 @@ export default {
       type: String,
       default: "vue-filter__search",
     },
-    searchButtonName: {
-      type: String,
-      default: "Search",
-    },
+
     searchFormClass: {
       type: String,
       default: "vue-filter__search-form",
@@ -264,6 +265,7 @@ export default {
       type: String,
       default: "vue-filter__search-btn",
     },
+
     // Select Classes
     selectClass: {
       type: String,

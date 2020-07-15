@@ -1,13 +1,13 @@
 # vue-dynamic-filters
 
 [![Vue](https://img.shields.io/badge/Vue-2.x-brightgreen.svg)](https://vuejs.org/)
-[![npm](https://img.shields.io/npm/v/vue-scrollto.svg)](https://www.npmjs.com/package/vue-dynamic-filters)
+[![npm](https://img.shields.io/npm/v/vue-dynamic-filters)](https://www.npmjs.com/package/vue-dynamic-filters)
 
-[DEMO](https://mostafaelgamal.github.io/vue-dynamics-filters/)
+[DEMO](https://mostafaelgamal.github.io/vue-dynamics-filters/) [Github](https://github.com/MostafaElGamal/vue-dynamics-filters)
 
 Making dynamic filters was never this easy!
 
-This is for `vue 2.x`
+This is for `vue 2.x`+
 
 ## Installing
 
@@ -31,9 +31,11 @@ Vue.component("vueDynamicFilters", vueDynamicFilters);
 
 ## Usage
 
-vue-dynamic-filters can be used in two methods, the first method is to give `vue-dynamic-filters`all the filters like the first example.
+vue-dynamic-filters can be used in two methods, the first method is to give `vue-dynamic-filters` all the filters like the first method.
 
 ### First Method
+
+you don't have to worry about looping and the output value the first method of the `vue-dynamic-filters` will handel that for you, you can see the first example code right here [First Method Code](https://github.com/MostafaElGamal/vue-dynamics-filters/blob/master/src/Demo/firstExample.vue) the products data is just for testing purpsoes
 
 ```js
 <template>
@@ -46,9 +48,13 @@ vue-dynamic-filters can be used in two methods, the first method is to give `vue
       v-model="filterValues"
     ></vue-dynamic-filters>
    </div>
- </template>
- <script>
+</template>
+import vueDynamicFilters from "vue-dynamic-filters";
+<script>
   export default{
+    components: {
+    vueDynamicFilters,
+    },
     data(){
       return{
         filterValues:{},
@@ -81,164 +87,352 @@ vue-dynamic-filters can be used in two methods, the first method is to give `vue
       }
     }
   }
- </script>
+  </script>
 ```
 
-In case you are using the browser version (directly including the script on your page), you can set the defaults with
+### Second Method
+
+Second method let's you control in every input the `vue-daynamic-filters` and still have the same result, when I say conrtrol of the output keys on every input, you can also check the second method example [Second Method Code](https://github.com/MostafaElGamal/vue-dynamics-filters/blob/master/src/Demo/secondExample.vue)
 
 ```js
-VueScrollTo.setDefaults({
-  container: "body",
-  duration: 500,
-  easing: "ease",
-  offset: 0,
-  force: true,
-  cancelable: true,
-  onStart: false,
-  onDone: false,
-  onCancel: false,
-  x: false,
-  y: true,
-});
-```
-
-```html
-<a href="#" v-scroll-to="'#element'">Scroll to #element</a>
-
-<div id="element">
-  Hi. I'm #element.
-</div>
-```
-
-If you need to customize the scrolling options, you can pass in an object literal to the directive:
-
-```html
-<a
-  href="#"
-  v-scroll-to="{
-     el: '#element',
-     container: '#container',
-     duration: 500,
-     easing: 'linear',
-     offset: -200,
-     force: true,
-     cancelable: true,
-     onStart: onStart,
-     onDone: onDone,
-     onCancel: onCancel,
-     x: false,
-     y: true
- }"
->
-  Scroll to #element
-</a>
-```
-
-<p class="tip">
-    Check out the Options section for more details about the available options.
-</p>
-
-### Programmatically
-
-```js
-var VueScrollTo = require("vue-scrollto");
-
-var options = {
-  container: "#container",
-  easing: "ease-in",
-  offset: -60,
-  force: true,
-  cancelable: true,
-  onStart: function(element) {
-    // scrolling started
+<template>
+  <div class="filters">
+    <div v-for="filter in filters" :key="filter.id">
+      <vue-dynamic-filters
+        selectValue="id"
+        checkboxValue="id"
+        methodType="m2"
+        :displayType="filter.display_type ? true : false"
+        :filter="filter"
+        :singleFilterValue="filterValues"
+        :searchValueKey="filter.searchKey"
+        :selectValueKey="filter.categoryKey"
+        :checkboxValueKey="filter.checkboxKey"
+        @methodTwoValueChaned="changeValue"
+      ></vue-dynamic-filters>
+    </div>
+  </div>
+</template>
+<script>
+import vueDynamicFilters from "vue-dynamic-filters";
+export default{
+  components: {
+    vueDynamicFilters,
   },
-  onDone: function(element) {
-    // scrolling is done
+  data() {
+    return {
+      filterValues: {
+        textKey:'acc'
+      },
+      filters: [
+        {
+          title: "Search",
+          filter_type: "text",
+          searchKey: "textKey",
+          display_type: 0,
+        },
+        {
+          title: "Category",
+          filter_type: "select",
+          display_type: 0,
+          categoryKey: "categoryKey",
+          options: [
+            {
+              id: 2,
+              title: "Mobiles",
+            },
+            {
+              id: 3,
+              title: "Cars",
+            },
+          ],
+        },
+        {
+          title: "Brand",
+          filter_type: "checkbox",
+          checkboxKey: "checkboxKey",
+          display_type: 1,
+          options: [
+            {
+              id: 2,
+              title: "Redmi",
+            },
+            {
+              id: 4,
+              title: "Iphone",
+            },
+          ],
+        },
+      ],
+    };
   },
-  onCancel: function() {
-    // scrolling has been interrupted
+  methods: {
+    changeValue(value) {
+      this.filterValues = value;
+    },
   },
-  x: false,
-  y: true,
-};
-
-var cancelScroll = VueScrollTo.scrollTo(element, duration, options);
-
-// or alternatively inside your components you can use
-cancelScroll = this.$scrollTo(element, duration, options);
-
-// to cancel scrolling you can call the returned function
-cancelScroll();
+}
+</script>
 ```
+
+as you can see in this example you can loop throw the `vue-dynamic-filters` and also you can control the output object key on every input if the filters are coming from some sort of api or something like that.
 
 ## Options
 
-#### el / element
+#### filters
 
-The element you want to scroll to.
+That the array that include the inputs like the first examples above, only used by default for the first method.
 
-#### container
+_Default:_ `[]`
 
-The container that has to be scrolled.
+#### filter
 
-_Default:_ `body`
+That the object that include the input like the second examples above, only used by default for the second method.
 
-#### duration
+_Default:_ `{}`
 
-The duration (in milliseconds) of the scrolling animation.
+#### methodType
 
-_Default:_ `500`
+This proprty let the `vue-dynamic-filters` know that will work on the second method and the dev will loop throw the component and use the `@methodTwoValueChaned` event and by default use the first method.
 
-#### easing
+_Default:_ `m1`
 
-The easing to be used when animating. Read more in the [Easing section](#easing-detailed).
+#### singleFilterValue
 
-_Default:_ `ease`
+This is proprty only use in method `m2` only this proprty you can update and add like `v-model` but only used for `m2`.
 
-#### offset
+_Default:_ `{}`
 
-The offset that should be applied when scrolling. This option accepts a callback function since `v2.8.0`.
+#### filterTitleKey
 
-_Default:_ `0`
+filter title key used for the text in the button for example `search` , `category`, etc..., you specife the key that inside the `filters` array or the `filter` object by default is
 
-#### force
+_Default:_ `title`
 
-Indicates if scrolling should be performed, even if the scroll target is already in view.
+#### filterTypeKey
 
-_Default:_ `true`
+This allows you to control the key that check for the key that inside `filters` array or `filter` object for example `filter_type:'select'`, you can check the two example for more clarification.
 
-#### cancelable
+_Default:_ `filter_type`
 
-Indicates if user can cancel the scroll or not.
+#### filterOptionsKey
 
-_Default:_ `true`
+This proprty only used for the `select` input and `checkbox` input that the key `vue-dynamic-filters` will loop in to display the values and by defalut `options`
 
-#### onStart
+_Default:_ `options`
 
-A callback function that should be called when scrolling has started. Receives the target element as a parameter.
+#### displayType
 
-_Default:_ `noop`
-
-#### onDone
-
-A callback function that should be called when scrolling has ended. Receives the target element as a parameter.
-
-_Default:_ `noop`
-
-#### onCancel
-
-A callback function that should be called when scrolling has been aborted by the user (user scrolled, clicked etc.). Receives the abort event and the target element as parameters.
-
-_Default:_ `noop`
-
-#### x
-
-Whether or not we want scrolling on the `x` axis
-
-_Default:_ `false`
-
-#### y
-
-Whether or not we want scrolling on the `y` axis
+This prorpty allow to control the if the filter is collapse or open, you can check the second example for more clarification.
 
 _Default:_ `true`
+
+#### checkboxCheckName
+
+This proprty allows you to controll the validation on the `checkbox` name and this value oprate with `filterTypeKey` proprty, on other words you it is used for validation to check if the `filterTypeKey == checkboxCheckName` if true will display the filter if not will not display it.
+
+_Default:_ `checkbox`
+
+#### checkboxLabelKey
+
+This proprty is the key for title of the checkbox object and this `checkboxLabelKey` will be the in the label of the input key.
+
+_Default:_ `title`
+
+#### checkboxValueKey
+
+This proprty is let you to control the name of the returnd key to the selected values.
+
+_Default:_ `checkbox`
+
+#### checkboxValue
+
+This proprty is let you to control checkbox value, for example you want the `id` in to return so you will pass this proprty and in `checkboxValueKey` will return the `id` check example two for more clarification and by default `vue-dynamic-filters` return the object.
+
+_Default:_ `` `empty string that mean you want to return the full object not key inside of it`
+
+#### selectCheckName
+
+This proprty allows you to controll the validation on the `select` name and this value oprate with `filterTypeKey` proprty, on other words you it is used for validation to check if the `filterTypeKey == selectCheckName` if true will display the filter if not will not display it.
+
+_Default:_ `select`
+
+#### selectValueKey
+
+This proprty is let you to control the name of the returnd key to the selected values.
+
+_Default:_ `select`
+
+#### selectDisplayNameKey
+
+This proprty is the key for title of the select option that will display in the select filter.
+
+_Default:_ `title`
+
+#### selectValue
+
+This proprty is let you to control checkbox value, for example you want the `id` in to return so you will pass this proprty and in `selectValueKey` will return the `id` check example two for more clarification and by default `vue-dynamic-filters` return the object.
+
+_Default:_ `` `empty string that mean you want to return the full object not key inside of it`
+
+#### searchCheckName
+
+This proprty allows you to controll the validation on the `select` name and this value oprate with `filterTypeKey` proprty, on other words you it is used for validation to check if the `filterTypeKey == searchCheckName` if true will display the filter if not will not display it.
+
+_Default:_ `search`
+
+#### searchValueKey
+
+This proprty is let you to control the name of the returnd key to the selected values.
+
+_Default:_ `select`
+
+#### searchButtonName
+
+This proprty is simply the text inside the button.
+
+_Default:_ `Search`
+
+#### priceCheckName
+
+This proprty allows you to controll the validation on the `price` name and this value oprate with `filterTypeKey` proprty, on other words you it is used for validation to check if the `filterTypeKey == priceCheckName` if true will display the filter if not will not display it.
+
+_Default:_ `price`
+
+#### minLabel
+
+This proprty is the key for title of the checkbox object and this `minLabel` will be the in the label of the input key.
+
+_Default:_ `min`
+
+#### maxLabel
+
+This proprty is the key for title of the checkbox object and this `maxLabel` will be the in the label of the input key.
+
+_Default:_ `max`
+
+#### minPriceValueKey
+
+This proprty is let you to control the name of the returnd key to the selected values.
+
+_Default:_ `min`
+
+#### maxPriceValueKey
+
+This proprty is let you to control the name of the returnd key to the selected values.
+
+_Default:_ `max`
+
+#### pricebuttonName
+
+This proprty is simply the text inside the button.
+
+_Default:_ `Search`
+
+#### vueFilterClassMethodOne
+
+This proprty is a class that holds the all filters.
+
+_Default:_ `vue-filter__method-one`
+
+#### vueFilterClassMethodTwo
+
+This proprty is a class that holds the all filters.
+
+_Default:_ `vue-filter__method-two`
+
+#### filterHolderClass
+
+This proprty is a class that holds only one filter.
+
+_Default:_ `vue-filter__filter-holder`
+
+#### filterInputHolderClass
+
+This proprty is a class that holds only one input.
+
+_Default:_ `vue-filter__input-holder`
+
+#### checkboxHolderClass
+
+This proprty is a class that for holder of all the checkboxes.
+
+_Default:_ `vue-filter__checkboxes-holder`
+
+#### checkboxClass
+
+This proprty is a class that for holdes input and the label.
+
+_Default:_ `vue-filter__checkbox`
+
+#### checkboxClass
+
+This proprty is a class that for checkbox lable.
+
+_Default:_ `vue-filter__checkbox-label`
+
+#### checkboxInputClass
+
+This proprty is a class that for checkbox input.
+
+_Default:_ `vue-filter__checkbox-input`
+
+#### searchInputClass
+
+This proprty is a class that for the search input.
+
+_Default:_ `vue-filter__search`
+
+#### searchFormClass
+
+This proprty is a class that for the search form.
+
+_Default:_ `vue-filter__search-form`
+
+#### searchBtnClass
+
+This proprty is a class that for the search button.
+
+_Default:_ `vue-filter__search-form`
+
+#### selectClass
+
+This proprty is a class that for the select input.
+
+_Default:_ `vue-filter__select`
+
+#### priceFormClass
+
+This proprty is a class that for the search form.
+
+_Default:_ `vue-filter__price-form`
+
+#### minHolderClass
+
+This proprty is a class that for the holder min price label and the input.
+
+_Default:_ `vue-filter__min-holder`
+
+#### maxHolderClass
+
+This proprty is a class that for the holder max price label and the input.
+
+_Default:_ `vue-filter__max-holder`
+
+#### priceLabelClass
+
+This proprty is a class that for price lable.
+
+_Default:_ `vue-filter__price-label`
+
+#### priceInputClass
+
+This proprty is a class that for price input `min` & `max`.
+
+_Default:_ `vue-filter__price-input`
+
+#### priceBtnClass
+
+This proprty is a class that for price button.
+
+_Default:_ `vue-filter__price-btn`

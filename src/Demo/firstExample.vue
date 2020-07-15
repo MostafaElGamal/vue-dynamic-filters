@@ -32,7 +32,6 @@
 
 <script>
 import vueDynamicFilters from "../vue-dynamic-filters";
-import filters from "./filters";
 import products from "./products";
 import productCard from "./productCard";
 export default {
@@ -43,10 +42,35 @@ export default {
   },
   data() {
     return {
-      filters: filters,
       products: products,
       filterValues: {},
       filteredProducts: [],
+      filters: [
+        {
+          title: "Search",
+          filter_type: "text",
+        },
+        {
+          title: "Price",
+          filter_type: "price",
+          min: "0.000000",
+          max: "9000.000000",
+        },
+        {
+          title: "Brand",
+          filter_type: "checkbox",
+          options: [
+            {
+              id: 2,
+              title: "Nokia",
+            },
+            {
+              id: 4,
+              title: "Iphone",
+            },
+          ],
+        },
+      ],
     };
   },
   methods: {
