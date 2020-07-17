@@ -31,7 +31,7 @@ Vue.component("vueDynamicFilters", vueDynamicFilters);
 
 ## Usage
 
-vue-dynamic-filters can be used in two methods, the first method is to give `vue-dynamic-filters` all the filters like the first method.
+vue-dynamic-filters can be used in two methods, the first method is to give `vue-dynamic-filters` all the filters and the package will do all the work, the second method is you do the loop and depend on the object you pass it will preview the input that you want.
 
 ### First Method
 
