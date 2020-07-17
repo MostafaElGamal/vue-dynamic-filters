@@ -1,13 +1,13 @@
 # vue-dynamic-filters
 
-[![Vue](https://img.shields.io/badge/Vue-2.x-brightgreen.svg)](https://vuejs.org/)
+[![Vue](https://img.shields.io/badge/Vue-3.x-brightgreen.svg)](https://vuejs.org/)
 [![npm](https://img.shields.io/npm/v/vue-dynamic-filters)](https://www.npmjs.com/package/vue-dynamic-filters)
 
-[DEMO](https://mostafaelgamal.github.io/vue-dynamics-filters/) [Github](https://github.com/MostafaElGamal/vue-dynamics-filters)
+[DEMO](https://mostafaelgamal.github.io/vue-dynamics-filters/)
 
-Making dynamic filters was never this easy!
+[Github](https://github.com/MostafaElGamal/vue-dynamic-filters)
 
-This is for `vue 2.x`+
+Making dynamic filters was never this easy now with this package you can make filters like amazon,souq,etc... just like that :clap:!
 
 ## Installing
 
