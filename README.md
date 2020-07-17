@@ -106,7 +106,7 @@ The second method lets you control in every input, the `vue-dynamic-filters` wil
         :searchValueKey="filter.searchKey"
         :selectValueKey="filter.categoryKey"
         :checkboxValueKey="filter.checkboxKey"
-        @methodTwoValueChaned="changeValue"
+        @methodTwoValueChanged="changeValue"
       ></vue-dynamic-filters>
     </div>
   </div>
@@ -174,6 +174,16 @@ export default{
 ```
 
 as you can see in this example you can loop throw the `vue-dynamic-filters` and also you can control the output object key on every input if the filters are coming from some sort of API or something like that.
+
+## Events
+
+#### @change
+
+This event is used only for the first method `m1` and you can have the object `value` as the first paramter.
+
+#### @methodTwoValueChanged
+
+This event is used only for the second method `m2` and you must use it so you can change the value of your filtered data like the `second method` examples.
 
 ## Options
 

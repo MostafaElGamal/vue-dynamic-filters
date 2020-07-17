@@ -103,6 +103,7 @@
         @checkboxChangedToVueFilter="sentCheckbox"
         @searchChangedToVueFilter="sentSearch"
         @priceChangedToVueFilter="sentPrice"
+        @selectChangedToVueFilter="sentSelect"
       ></filter-inputs>
     </div>
   </div>
@@ -363,13 +364,16 @@ export default {
         checkboxValueKey,
       );
     },
+    sentSelect() {
+      this.sentInput();
+    },
 
     sentInput() {
       if (this.checkFirstMethod) {
         this.$emit("input", Object.assign({}, this.value));
       } else {
         this.$emit(
-          "methodTwoValueChaned",
+          "methodTwoValueChanged",
           Object.assign({}, this.singleFilterValue),
         );
       }

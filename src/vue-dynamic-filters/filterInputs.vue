@@ -22,6 +22,7 @@
       :selectValue="selectValue"
       :selectClass="selectClass"
       :selectDisplayNameKey="selectDisplayNameKey"
+      @selectChangeToFilterInputs="selectChangedToIndex"
     />
     <search
       v-if="filterType == searchCheckName"
@@ -231,6 +232,9 @@ export default {
     },
     priceChangedToIndex({ min, max }) {
       this.$emit("priceChangedToVueFilter", { min, max });
+    },
+    selectChangedToIndex() {
+      this.$emit("selectChangedToVueFilter");
     },
   },
 };

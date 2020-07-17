@@ -51,6 +51,22 @@ export default {
           filter_type: "text",
         },
         {
+          title: "Category",
+          filter_type: "select",
+          display_type: 0,
+          categoryKey: "categoryKey",
+          options: [
+            {
+              id: 2,
+              title: "Mobiles",
+            },
+            {
+              id: 3,
+              title: "Cars",
+            },
+          ],
+        },
+        {
           title: "Price",
           filter_type: "price",
           min: "0.000000",

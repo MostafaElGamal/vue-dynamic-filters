@@ -3,6 +3,7 @@
     v-if="selectValue"
     :class="`${selectClass}`"
     v-model="filterValue[selectValueKey]"
+    @change="selectChange"
   >
     <option
       v-for="(option, i) in options"
@@ -49,6 +50,11 @@ export default {
     selectClass: {
       type: String,
       default: "vue-filter__select",
+    },
+  },
+  methods: {
+    selectChange() {
+      this.$emit("selectChangeToFilterInputs");
     },
   },
 };

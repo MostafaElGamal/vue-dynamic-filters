@@ -14,7 +14,7 @@
             :searchValueKey="filter.searchKey"
             :selectValueKey="filter.categoryKey"
             :checkboxValueKey="filter.checkboxKey"
-            @methodTwoValueChaned="changeValue"
+            @methodTwoValueChanged="changeValue"
           ></vue-dynamic-filters>
         </div>
       </div>
@@ -104,11 +104,9 @@ export default {
     changeMethod(value) {
       const newArr = this.products.filter((ele) => {
         if (
-          ele.title.indexOf(value.search) >= 0 ||
-          value.min <= ele.price ||
-          value.max >= ele.price ||
-          ele.category_id == value.select ||
-          ele.options.includes(value.checkbox ? value.checkbox[0] : 0)
+          ele.title.indexOf(value.textKey) >= 0 ||
+          ele.category_id == value.categoryKey ||
+          ele.options.includes(value.checkboxKey ? value.checkboxKey[0] : 0)
         ) {
           return true;
         }
