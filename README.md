@@ -3,7 +3,7 @@
 [![Vue](https://img.shields.io/badge/Vue-3.x-brightgreen.svg)](https://vuejs.org/)
 [![npm](https://img.shields.io/npm/v/vue-dynamic-filters)](https://www.npmjs.com/package/vue-dynamic-filters)
 
-[DEMO](https://mostafaelgamal.github.io/vue-dynamics-filters/)
+[DEMO](https://mostafaelgamal.github.io/vue-dynamic-filters/)
 
 #### :rocket: Making dynamic filters was never this easy now with this package you can make filters like amazon,souq,etc... just like that :clap:!
 
