@@ -1,6 +1,6 @@
 {
   "name": "@MostafaElGamal/vue-dynamic-filters",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "main": "dist/vue-filter.umd.js",
   "module": "dist/vue-filter.esm.js",
   "unpkg": "dist/vue-filter.min.js",

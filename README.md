@@ -5,8 +5,6 @@
 
 [DEMO](https://mostafaelgamal.github.io/vue-dynamics-filters/)
 
-[Github](https://github.com/MostafaElGamal/vue-dynamic-filters)
-
 #### :rocket: Making dynamic filters was never this easy now with this package you can make filters like amazon,souq,etc... just like that :clap:!
 
 ## Installing
